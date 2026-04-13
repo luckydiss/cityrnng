@@ -1,0 +1,276 @@
+# Backlog and Delivery Plan: CITYRNNG
+
+## 1. Принцип планирования
+
+Работа идет эпиками. Каждый эпик должен завершаться работающим вертикальным срезом, а не просто набором файлов.
+
+## 2. Эпики
+
+## Epic 0. Foundation
+
+Цель:
+
+- поднять монорепозиторий и основу инфраструктуры
+
+Задачи:
+
+- инициализировать `pnpm workspace` и `turborepo`
+- создать `apps/web`, `apps/api`, `packages/ui`, `packages/types`, `packages/config`
+- настроить TypeScript, ESLint, Prettier
+- добавить Docker Compose для local dev
+- подключить PostgreSQL и Redis локально
+- настроить CI
+- завести `.env.example`
+
+Definition of Done:
+
+- проект запускается локально;
+- `web` и `api` билдятся;
+- линт и typecheck проходят;
+- локальная БД поднимается командой из README.
+
+## Epic 1. Auth and Profiles
+
+Цель:
+
+- пользователь может зарегистрироваться и войти в платформу
+
+Задачи:
+
+- реализовать auth flow
+- создать таблицы `users`, `profiles`, `roles`, `sessions`
+- сделать guards и RBAC
+- реализовать `/me`
+- реализовать формы входа / регистрации
+
+Definition of Done:
+
+- пользователь может войти;
+- после входа создается профиль;
+- protected routes работают;
+- роли применяются корректно.
+
+## Epic 2. Events and Registrations
+
+Цель:
+
+- runner может видеть события и записываться
+
+Задачи:
+
+- реализовать CRUD событий в admin
+- вывести список и карточку события в web
+- добавить регистрацию на событие
+- показать мои записи в кабинете
+
+Definition of Done:
+
+- админ создает событие;
+- пользователь видит событие на сайте;
+- регистрация сохраняется в БД;
+- повторная запись запрещена.
+
+## Epic 3. Check-in
+
+Цель:
+
+- пользователь может подтвердить участие на событии
+
+Задачи:
+
+- реализовать генерацию короткоживущего QR token
+- реализовать экран event manager
+- реализовать endpoint scan
+- создать `checkins`
+- сделать confirm/reject поток
+
+Definition of Done:
+
+- check-in можно создать сканированием QR;
+- токен истекает;
+- повторный check-in блокируется;
+- event manager видит список check-ins.
+
+## Epic 4. Points Engine
+
+Цель:
+
+- система начисляет и списывает баллы корректно и аудируемо
+
+Задачи:
+
+- реализовать `point_accounts`, `point_transactions`, `point_rules`
+- welcome bonus
+- first run bonus
+- event attendance points
+- ручные корректировки
+- история транзакций и баланс
+
+Definition of Done:
+
+- все операции идут через ledger;
+- дубли по idempotency не проходят;
+- баланс считается корректно;
+- админ видит журнал.
+
+## Epic 5. Rewards and Partners
+
+Цель:
+
+- runner может обменять баллы на предложения партнеров
+
+Задачи:
+
+- реализовать сущности partners и rewards
+- сделать каталог rewards
+- сделать redemption flow
+- генерировать код / QR
+- реализовать partner verification
+
+Definition of Done:
+
+- reward можно активировать;
+- при активации происходит списание;
+- partner может проверить redemption;
+- повторное использование заблокировано.
+
+## Epic 6. Admin Panel
+
+Цель:
+
+- операционная команда может управлять платформой без разработчика
+
+Задачи:
+
+- dashboard админки
+- управление пользователями
+- управление событиями
+- управление rewards и партнерами
+- журнал баллов
+- audit logs
+
+Definition of Done:
+
+- основные операционные сценарии закрыты;
+- ручные корректировки доступны;
+- критичные действия логируются.
+
+## Epic 7. Marketing Site
+
+Цель:
+
+- публичная часть объясняет проект и конвертит в регистрацию
+
+Задачи:
+
+- главная
+- как это работает
+- события
+- партнеры
+- about
+- faq
+- базовое SEO
+
+Definition of Done:
+
+- страницы адаптивны;
+- контент легко редактируется;
+- CTA ведут в signup / events.
+
+## Epic 8. Notifications and Analytics
+
+Цель:
+
+- пользователи получают сервисные сообщения, команда видит метрики
+
+Задачи:
+
+- email notifications
+- event reminders
+- reward redemption notifications
+- PostHog events
+- Yandex Metrica
+- admin summary widgets
+
+Definition of Done:
+
+- ключевые уведомления отправляются;
+- основные funnel events собираются;
+- есть базовая продуктовая аналитика.
+
+## 3. Рекомендуемая последовательность
+
+1. Epic 0
+2. Epic 1
+3. Epic 2
+4. Epic 3
+5. Epic 4
+6. Epic 5
+7. Epic 6
+8. Epic 7
+9. Epic 8
+
+`Epic 7` можно частично вести параллельно после завершения `Epic 1`.
+
+## 4. Sprint slicing
+
+### Sprint 1
+
+- Epic 0
+- начало Epic 1
+
+### Sprint 2
+
+- завершение Epic 1
+- Epic 2
+
+### Sprint 3
+
+- Epic 3
+- начало Epic 4
+
+### Sprint 4
+
+- завершение Epic 4
+- Epic 5
+
+### Sprint 5
+
+- Epic 6
+- Epic 7
+
+### Sprint 6
+
+- Epic 8
+- стабилизация
+- bugfix
+- pre-launch hardening
+
+## 5. Testing backlog
+
+- unit tests для points engine
+- integration tests для redemption
+- e2e auth flow
+- e2e event registration flow
+- e2e check-in flow
+- e2e reward redemption flow
+- smoke tests для production deploy
+
+## 6. Non-functional backlog
+
+- rate limits
+- audit logging
+- backup policy
+- health checks
+- structured logs
+- observability dashboards
+- feature flags
+
+## 7. Приоритеты, которые нельзя отложить
+
+- points engine ledger model
+- RBAC
+- idempotency
+- audit logs
+- backup and restore
+- secure auth flow

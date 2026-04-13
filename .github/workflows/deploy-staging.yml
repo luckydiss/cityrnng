@@ -1,0 +1,62 @@
+name: Deploy Staging
+
+on:
+  push:
+    branches:
+      - main
+
+permissions:
+  contents: read
+
+jobs:
+  deploy-staging:
+    runs-on: ubuntu-latest
+    environment: staging
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Docker Buildx
+        uses: docker/setup-buildx-action@v3
+
+      - name: Log in to registry
+        uses: docker/login-action@v3
+        with:
+          registry: ${{ secrets.REGISTRY_URL }}
+          username: ${{ secrets.REGISTRY_USERNAME }}
+          password: ${{ secrets.REGISTRY_PASSWORD }}
+
+      - name: Build and push image
+        uses: docker/build-push-action@v6
+        with:
+          context: .
+          push: true
+          tags: ${{ secrets.REGISTRY_URL }}/${{ secrets.IMAGE_NAME }}:staging-${{ github.sha }}
+
+      - name: Setup SSH
+        uses: webfactory/ssh-agent@v0.9.0
+        with:
+          ssh-private-key: ${{ secrets.STAGING_SSH_KEY }}
+
+      - name: Add host to known_hosts
+        run: |
+          mkdir -p ~/.ssh
+          ssh-keyscan -H "${{ secrets.STAGING_HOST }}" >> ~/.ssh/known_hosts
+
+      - name: Upload deploy env file
+        run: |
+          ssh "${{ secrets.STAGING_USER }}@${{ secrets.STAGING_HOST }}" "mkdir -p '${{ secrets.STAGING_APP_DIR }}'"
+          printf '%s' "${{ secrets.STAGING_ENV_FILE }}" | ssh "${{ secrets.STAGING_USER }}@${{ secrets.STAGING_HOST }}" "cat > '${{ secrets.STAGING_APP_DIR }}/.env'"
+
+      - name: Deploy on staging host
+        run: |
+          ssh "${{ secrets.STAGING_USER }}@${{ secrets.STAGING_HOST }}" \
+            "export IMAGE='${{ secrets.REGISTRY_URL }}/${{ secrets.IMAGE_NAME }}:staging-${{ github.sha }}' && bash '${{ secrets.STAGING_APP_DIR }}/deploy-staging.sh'"
+
+      - name: Run health check
+        run: |
+          curl --fail --retry 5 --retry-delay 5 "https://staging.example.com/api/v1/health"
+
+      - name: Deployment note
+        run: echo "Replace staging.example.com and prepare deploy-staging.sh on the server before enabling this workflow."
