@@ -129,29 +129,20 @@
 
 ## 6. Backend modules
 
-Реализованные:
-
 - `auth`
 - `users`
-- `me`
-- `events` (включая admin controller)
-- `attendances` (admin review + matcher)
-- `locations` (admin CRUD для `city_locations`)
-- `integrations/strava`
-- `points` (включая admin adjust)
-- `health`
-- `prisma`
-- `config`
-- `crypto`
-
-Planned:
-
+- `profiles`
+- `events`
+- `event-registrations`
+- `checkins`
+- `points`
 - `rewards`
 - `partners`
 - `notifications`
 - `files`
+- `admin`
 - `audit`
-- `feature-flags`
+- `health`
 
 ## 7. Data flow
 
@@ -162,24 +153,21 @@ Planned:
 3. После верификации создается `user`, `profile`, `point_account`.
 4. Записывается welcome transaction.
 
-### Подтверждение участия
+### Check-in на событии
 
-QR-поток из ранней версии архитектуры заменён на подтверждение через внешнюю активность (Strava). Событие не требует предварительной регистрации — пользователь просто пробежал маршрут и активность автоматически сопоставляется с событием.
+1. Event manager открывает экран активного события.
+2. Система генерирует короткоживущий QR token.
+3. Runner сканирует QR.
+4. `api/checkins` проверяет регистрацию, статус события и срок действия токена.
+5. Создается `checkin`.
+6. После подтверждения триггерится начисление в `points`.
 
-1. Runner подключает Strava через `GET /integrations/strava/connect` → OAuth → `GET /integrations/strava/callback`. Токены хранятся зашифрованными в `user_provider_accounts`.
-2. Администратор запускает `POST /admin/integrations/strava/sync` для пользователя (фоновых джоб пока нет). Активности нормализуются в `external_activities`.
-3. `AttendanceMatcherService` сверяет каждую активность с действующими `event_sync_rules`: окно времени, тип активности, границы distance/duration, геофенс через привязанные `city_locations` (или устаревший inline-геофенс).
-4. При успешном матче создаётся `event_attendances` со статусом `approved` (если `auto_approve=true`) или `pending` (на ручной review).
-5. В момент, когда attendance переходит в `approved` (автоматически или через `POST /admin/attendances/:id/approve`), `PointsAwardsService.awardEventAttendance` начисляет баллы. Начисление идемпотентно по `event_attendance:<attendanceId>`.
-
-### Redemption (Planned, Epic 5)
-
-Ниже — целевой поток. Модуль `rewards` и соответствующие таблицы ещё не реализованы, описание сохранено как контракт для будущего эпика.
+### Redemption
 
 1. Runner выбирает reward.
 2. `api/rewards` проверяет доступность и достаточность баллов.
 3. Создается redemption.
-4. `api/points` пишет debit transaction (atomic, через `PointsService.post`).
+4. `api/points` пишет debit transaction.
 5. Генерируется код или QR для использования у партнера.
 
 ## 8. Инфраструктура

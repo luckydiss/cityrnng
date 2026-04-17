@@ -1,0 +1,1396 @@
+<KnowledgeGraph>
+  <CITYRNNG_Legacy_Info TYPE="PROJECT_ROOT">
+    <keywords>CITYRNNG, running, community, NestJS, Next.js, Prisma, Strava</keywords>
+    <terms>auth, users, events, attendances, points, locations, strava, web</terms>
+    <annotation>Модульный монолит CITYRNNG с API на NestJS и web-частью на Next.js. Граф собран по legacy-коду и проектной документации.</annotation>
+    <BusinessScenarios>
+      <Scenario NAME="RunnerLogin">Пользователь инициирует вход, подтверждает challenge и получает активную сессию.</Scenario>
+      <Scenario NAME="EventAttendance">Внешняя активность сопоставляется с правилом события и формирует attendance.</Scenario>
+      <Scenario NAME="PointsLifecycle">Баллы начисляются, корректируются и используются в прикладных сценариях проекта.</Scenario>
+    </BusinessScenarios>
+    <apps_api_prisma_seed_ts TYPE="SEED_MODULE" FILE="apps/api/prisma/seed.ts">
+      <keywords>database, Seed, CITYRNNG</keywords>
+      <terms>seed, main, ROLES</terms>
+      <annotation>Заполняет базу стартовыми данными для разработки и локального запуска.</annotation>
+      <apps_api_prisma_seed_ts_seed_FUNC TYPE="IS_FUNCTION_OF_MODULE" NAME="seed">
+        <keywords>database, function, Seed</keywords>
+        <terms>seed</terms>
+        <annotation>Function seed of module apps/api/prisma/seed.ts.</annotation>
+      </apps_api_prisma_seed_ts_seed_FUNC>
+      <apps_api_prisma_seed_ts_main_FUNC TYPE="IS_FUNCTION_OF_MODULE" NAME="main">
+        <keywords>database, function, Seed</keywords>
+        <terms>main</terms>
+        <annotation>Function main of module apps/api/prisma/seed.ts.</annotation>
+      </apps_api_prisma_seed_ts_main_FUNC>
+    </apps_api_prisma_seed_ts>
+    <apps_api_src_app_module_ts TYPE="MODULE_MODULE" FILE="apps/api/src/app.module.ts">
+      <keywords>app.module, Module, CITYRNNG</keywords>
+      <terms>AppModule, monorepoRootEnv</terms>
+      <annotation>Связывает провайдеры и экспортирует зависимости домена app.module.</annotation>
+      <apps_api_src_app_module_ts_AppModule_CLASS TYPE="IS_CLASS_OF_MODULE" NAME="AppModule">
+        <keywords>app.module, class, Module</keywords>
+        <terms></terms>
+        <annotation>Класс AppModule реализует ответственность модуля apps/api/src/app.module.ts.</annotation>
+      </apps_api_src_app_module_ts_AppModule_CLASS>
+    </apps_api_src_app_module_ts>
+    <apps_api_src_attendances_admin_attendances_controller_ts TYPE="CONTROLLER_MODULE" FILE="apps/api/src/attendances/admin-attendances.controller.ts">
+      <keywords>attendances, Controller, CITYRNNG</keywords>
+      <terms>AdminAttendancesController</terms>
+      <annotation>Определяет HTTP-контроллер и маршруты домена attendances.</annotation>
+      <apps_api_src_attendances_admin_attendances_controller_ts_AdminAttendancesController_CLASS TYPE="IS_CLASS_OF_MODULE" NAME="AdminAttendancesController">
+        <keywords>attendances, class, Controller</keywords>
+        <terms>constructor, approve, reject</terms>
+        <annotation>Класс AdminAttendancesController реализует ответственность модуля apps/api/src/attendances/admin-attendances.controller.ts.</annotation>
+        <apps_api_src_attendances_admin_attendances_controller_ts_AdminAttendancesController_constructor_METHOD TYPE="IS_METHOD_OF_CLASS" NAME="constructor">
+          <keywords>attendances, method, Controller</keywords>
+          <terms>constructor</terms>
+          <annotation>constructor method of class AdminAttendancesController.</annotation>
+        </apps_api_src_attendances_admin_attendances_controller_ts_AdminAttendancesController_constructor_METHOD>
+        <apps_api_src_attendances_admin_attendances_controller_ts_AdminAttendancesController_approve_METHOD TYPE="IS_METHOD_OF_CLASS" NAME="approve">
+          <keywords>attendances, method, Controller</keywords>
+          <terms>approve</terms>
+          <annotation>approve method of class AdminAttendancesController.</annotation>
+        </apps_api_src_attendances_admin_attendances_controller_ts_AdminAttendancesController_approve_METHOD>
+        <apps_api_src_attendances_admin_attendances_controller_ts_AdminAttendancesController_reject_METHOD TYPE="IS_METHOD_OF_CLASS" NAME="reject">
+          <keywords>attendances, method, Controller</keywords>
+          <terms>reject</terms>
+          <annotation>reject method of class AdminAttendancesController.</annotation>
+        </apps_api_src_attendances_admin_attendances_controller_ts_AdminAttendancesController_reject_METHOD>
+      </apps_api_src_attendances_admin_attendances_controller_ts_AdminAttendancesController_CLASS>
+      <CrossLinks>
+        <Link TARGET="apps_api_src_auth_types_ts" TYPE="USES_MODULE" />
+      </CrossLinks>
+    </apps_api_src_attendances_admin_attendances_controller_ts>
+    <apps_api_src_attendances_attendance_matcher_service_ts TYPE="SERVICE_MODULE" FILE="apps/api/src/attendances/attendance-matcher.service.ts">
+      <keywords>attendances, Service, CITYRNNG</keywords>
+      <terms>AttendanceMatcherService, activityPoints, passesLocations, passesLegacyGeofence, haversineMeters, uniqueTargetIncludes, MatchOptions, MatchSummary, SyncRuleWithContext, DEFAULT_LOCATION_RADIUS_METERS</terms>
+      <annotation>Реализует бизнес-логику и координирует операции домена attendances.</annotation>
+      <apps_api_src_attendances_attendance_matcher_service_ts_AttendanceMatcherService_CLASS TYPE="IS_CLASS_OF_MODULE" NAME="AttendanceMatcherService">
+        <keywords>attendances, class, Service</keywords>
+        <terms>constructor, matchForUser, createAttendanceAndAward, ruleMatchesActivity</terms>
+        <annotation>Класс AttendanceMatcherService реализует ответственность модуля apps/api/src/attendances/attendance-matcher.service.ts.</annotation>
+        <apps_api_src_attendances_attendance_matcher_service_ts_AttendanceMatcherService_constructor_METHOD TYPE="IS_METHOD_OF_CLASS" NAME="constructor">
+          <keywords>attendances, method, Service</keywords>
+          <terms>constructor</terms>
+          <annotation>constructor method of class AttendanceMatcherService.</annotation>
+        </apps_api_src_attendances_attendance_matcher_service_ts_AttendanceMatcherService_constructor_METHOD>
+        <apps_api_src_attendances_attendance_matcher_service_ts_AttendanceMatcherService_matchForUser_METHOD TYPE="IS_METHOD_OF_CLASS" NAME="matchForUser">
+          <keywords>attendances, method, Service</keywords>
+          <terms>matchForUser</terms>
+          <annotation>matchForUser method of class AttendanceMatcherService.</annotation>
+        </apps_api_src_attendances_attendance_matcher_service_ts_AttendanceMatcherService_matchForUser_METHOD>
+        <apps_api_src_attendances_attendance_matcher_service_ts_AttendanceMatcherService_createAttendanceAndAward_METHOD TYPE="IS_METHOD_OF_CLASS" NAME="createAttendanceAndAward">
+          <keywords>attendances, method, Service</keywords>
+          <terms>createAttendanceAndAward</terms>
+          <annotation>createAttendanceAndAward method of class AttendanceMatcherService.</annotation>
+        </apps_api_src_attendances_attendance_matcher_service_ts_AttendanceMatcherService_createAttendanceAndAward_METHOD>
+        <apps_api_src_attendances_attendance_matcher_service_ts_AttendanceMatcherService_ruleMatchesActivity_METHOD TYPE="IS_METHOD_OF_CLASS" NAME="ruleMatchesActivity">
+          <keywords>attendances, method, Service</keywords>
+          <terms>ruleMatchesActivity</terms>
+          <annotation>ruleMatchesActivity method of class AttendanceMatcherService.</annotation>
+        </apps_api_src_attendances_attendance_matcher_service_ts_AttendanceMatcherService_ruleMatchesActivity_METHOD>
+      </apps_api_src_attendances_attendance_matcher_service_ts_AttendanceMatcherService_CLASS>
+      <apps_api_src_attendances_attendance_matcher_service_ts_activityPoints_FUNC TYPE="IS_FUNCTION_OF_MODULE" NAME="activityPoints">
+        <keywords>attendances, function, Service</keywords>
+        <terms>activityPoints</terms>
+        <annotation>Function activityPoints of module apps/api/src/attendances/attendance-matcher.service.ts.</annotation>
+      </apps_api_src_attendances_attendance_matcher_service_ts_activityPoints_FUNC>
+      <apps_api_src_attendances_attendance_matcher_service_ts_passesLocations_FUNC TYPE="IS_FUNCTION_OF_MODULE" NAME="passesLocations">
+        <keywords>attendances, function, Service</keywords>
+        <terms>passesLocations</terms>
+        <annotation>Function passesLocations of module apps/api/src/attendances/attendance-matcher.service.ts.</annotation>
+      </apps_api_src_attendances_attendance_matcher_service_ts_passesLocations_FUNC>
+      <apps_api_src_attendances_attendance_matcher_service_ts_passesLegacyGeofence_FUNC TYPE="IS_FUNCTION_OF_MODULE" NAME="passesLegacyGeofence">
+        <keywords>attendances, function, Service</keywords>
+        <terms>passesLegacyGeofence</terms>
+        <annotation>Function passesLegacyGeofence of module apps/api/src/attendances/attendance-matcher.service.ts.</annotation>
+      </apps_api_src_attendances_attendance_matcher_service_ts_passesLegacyGeofence_FUNC>
+      <apps_api_src_attendances_attendance_matcher_service_ts_haversineMeters_FUNC TYPE="IS_FUNCTION_OF_MODULE" NAME="haversineMeters">
+        <keywords>attendances, function, Service</keywords>
+        <terms>haversineMeters</terms>
+        <annotation>Function haversineMeters of module apps/api/src/attendances/attendance-matcher.service.ts.</annotation>
+      </apps_api_src_attendances_attendance_matcher_service_ts_haversineMeters_FUNC>
+      <apps_api_src_attendances_attendance_matcher_service_ts_uniqueTargetIncludes_FUNC TYPE="IS_FUNCTION_OF_MODULE" NAME="uniqueTargetIncludes">
+        <keywords>attendances, function, Service</keywords>
+        <terms>uniqueTargetIncludes</terms>
+        <annotation>Function uniqueTargetIncludes of module apps/api/src/attendances/attendance-matcher.service.ts.</annotation>
+      </apps_api_src_attendances_attendance_matcher_service_ts_uniqueTargetIncludes_FUNC>
+    </apps_api_src_attendances_attendance_matcher_service_ts>
+    <apps_api_src_attendances_attendances_module_ts TYPE="MODULE_MODULE" FILE="apps/api/src/attendances/attendances.module.ts">
+      <keywords>attendances, Module, CITYRNNG</keywords>
+      <terms>AttendancesModule</terms>
+      <annotation>Связывает провайдеры и экспортирует зависимости домена attendances.</annotation>
+      <apps_api_src_attendances_attendances_module_ts_AttendancesModule_CLASS TYPE="IS_CLASS_OF_MODULE" NAME="AttendancesModule">
+        <keywords>attendances, class, Module</keywords>
+        <terms></terms>
+        <annotation>Класс AttendancesModule реализует ответственность модуля apps/api/src/attendances/attendances.module.ts.</annotation>
+      </apps_api_src_attendances_attendances_module_ts_AttendancesModule_CLASS>
+    </apps_api_src_attendances_attendances_module_ts>
+    <apps_api_src_attendances_attendances_service_ts TYPE="SERVICE_MODULE" FILE="apps/api/src/attendances/attendances.service.ts">
+      <keywords>attendances, Service, CITYRNNG</keywords>
+      <terms>AttendancesService</terms>
+      <annotation>Реализует бизнес-логику и координирует операции домена attendances.</annotation>
+      <apps_api_src_attendances_attendances_service_ts_AttendancesService_CLASS TYPE="IS_CLASS_OF_MODULE" NAME="AttendancesService">
+        <keywords>attendances, class, Service</keywords>
+        <terms>constructor, listForEvent, approve, reject</terms>
+        <annotation>Класс AttendancesService реализует ответственность модуля apps/api/src/attendances/attendances.service.ts.</annotation>
+        <apps_api_src_attendances_attendances_service_ts_AttendancesService_constructor_METHOD TYPE="IS_METHOD_OF_CLASS" NAME="constructor">
+          <keywords>attendances, method, Service</keywords>
+          <terms>constructor</terms>
+          <annotation>constructor method of class AttendancesService.</annotation>
+        </apps_api_src_attendances_attendances_service_ts_AttendancesService_constructor_METHOD>
+        <apps_api_src_attendances_attendances_service_ts_AttendancesService_listForEvent_METHOD TYPE="IS_METHOD_OF_CLASS" NAME="listForEvent">
+          <keywords>attendances, method, Service</keywords>
+          <terms>listForEvent</terms>
+          <annotation>listForEvent method of class AttendancesService.</annotation>
+        </apps_api_src_attendances_attendances_service_ts_AttendancesService_listForEvent_METHOD>
+        <apps_api_src_attendances_attendances_service_ts_AttendancesService_approve_METHOD TYPE="IS_METHOD_OF_CLASS" NAME="approve">
+          <keywords>attendances, method, Service</keywords>
+          <terms>approve</terms>
+          <annotation>approve method of class AttendancesService.</annotation>
+        </apps_api_src_attendances_attendances_service_ts_AttendancesService_approve_METHOD>
+        <apps_api_src_attendances_attendances_service_ts_AttendancesService_reject_METHOD TYPE="IS_METHOD_OF_CLASS" NAME="reject">
+          <keywords>attendances, method, Service</keywords>
+          <terms>reject</terms>
+          <annotation>reject method of class AttendancesService.</annotation>
+        </apps_api_src_attendances_attendances_service_ts_AttendancesService_reject_METHOD>
+      </apps_api_src_attendances_attendances_service_ts_AttendancesService_CLASS>
+    </apps_api_src_attendances_attendances_service_ts>
+    <apps_api_src_attendances_dto_reject_attendance_dto_ts TYPE="DTO_MODULE" FILE="apps/api/src/attendances/dto/reject-attendance.dto.ts">
+      <keywords>attendances, DTO, CITYRNNG</keywords>
+      <terms>RejectAttendanceDto</terms>
+      <annotation>Описывает контракт входных и выходных данных домена attendances.</annotation>
+      <apps_api_src_attendances_dto_reject_attendance_dto_ts_RejectAttendanceDto_CLASS TYPE="IS_CLASS_OF_MODULE" NAME="RejectAttendanceDto">
+        <keywords>attendances, class, DTO</keywords>
+        <terms></terms>
+        <annotation>Класс RejectAttendanceDto реализует ответственность модуля apps/api/src/attendances/dto/reject-attendance.dto.ts.</annotation>
+      </apps_api_src_attendances_dto_reject_attendance_dto_ts_RejectAttendanceDto_CLASS>
+    </apps_api_src_attendances_dto_reject_attendance_dto_ts>
+    <apps_api_src_auth_auth_controller_ts TYPE="CONTROLLER_MODULE" FILE="apps/api/src/auth/auth.controller.ts">
+      <keywords>auth, Controller, CITYRNNG</keywords>
+      <terms>AuthController</terms>
+      <annotation>Определяет HTTP-контроллер и маршруты домена auth.</annotation>
+      <apps_api_src_auth_auth_controller_ts_AuthController_CLASS TYPE="IS_CLASS_OF_MODULE" NAME="AuthController">
+        <keywords>auth, class, Controller</keywords>
+        <terms>constructor, requestLogin, verifyLogin</terms>
+        <annotation>Класс AuthController реализует ответственность модуля apps/api/src/auth/auth.controller.ts.</annotation>
+        <apps_api_src_auth_auth_controller_ts_AuthController_constructor_METHOD TYPE="IS_METHOD_OF_CLASS" NAME="constructor">
+          <keywords>auth, method, Controller</keywords>
+          <terms>constructor</terms>
+          <annotation>constructor method of class AuthController.</annotation>
+        </apps_api_src_auth_auth_controller_ts_AuthController_constructor_METHOD>
+        <apps_api_src_auth_auth_controller_ts_AuthController_requestLogin_METHOD TYPE="IS_METHOD_OF_CLASS" NAME="requestLogin">
+          <keywords>auth, method, Controller</keywords>
+          <terms>requestLogin</terms>
+          <annotation>requestLogin method of class AuthController.</annotation>
+        </apps_api_src_auth_auth_controller_ts_AuthController_requestLogin_METHOD>
+        <apps_api_src_auth_auth_controller_ts_AuthController_verifyLogin_METHOD TYPE="IS_METHOD_OF_CLASS" NAME="verifyLogin">
+          <keywords>auth, method, Controller</keywords>
+          <terms>verifyLogin</terms>
+          <annotation>verifyLogin method of class AuthController.</annotation>
+        </apps_api_src_auth_auth_controller_ts_AuthController_verifyLogin_METHOD>
+      </apps_api_src_auth_auth_controller_ts_AuthController_CLASS>
+    </apps_api_src_auth_auth_controller_ts>
+    <apps_api_src_auth_auth_module_ts TYPE="MODULE_MODULE" FILE="apps/api/src/auth/auth.module.ts">
+      <keywords>auth, Module, CITYRNNG</keywords>
+      <terms>AuthModule</terms>
+      <annotation>Связывает провайдеры и экспортирует зависимости домена auth.</annotation>
+      <apps_api_src_auth_auth_module_ts_AuthModule_CLASS TYPE="IS_CLASS_OF_MODULE" NAME="AuthModule">
+        <keywords>auth, class, Module</keywords>
+        <terms></terms>
+        <annotation>Класс AuthModule реализует ответственность модуля apps/api/src/auth/auth.module.ts.</annotation>
+      </apps_api_src_auth_auth_module_ts_AuthModule_CLASS>
+    </apps_api_src_auth_auth_module_ts>
+    <apps_api_src_auth_auth_service_ts TYPE="SERVICE_MODULE" FILE="apps/api/src/auth/auth.service.ts">
+      <keywords>auth, Service, CITYRNNG</keywords>
+      <terms>AuthService, RequestLoginResult, VerifyLoginResult</terms>
+      <annotation>Реализует бизнес-логику и координирует операции домена auth.</annotation>
+      <apps_api_src_auth_auth_service_ts_AuthService_CLASS TYPE="IS_CLASS_OF_MODULE" NAME="AuthService">
+        <keywords>auth, class, Service</keywords>
+        <terms>constructor, requestLogin, verifyLogin</terms>
+        <annotation>Класс AuthService реализует ответственность модуля apps/api/src/auth/auth.service.ts.</annotation>
+        <apps_api_src_auth_auth_service_ts_AuthService_constructor_METHOD TYPE="IS_METHOD_OF_CLASS" NAME="constructor">
+          <keywords>auth, method, Service</keywords>
+          <terms>constructor</terms>
+          <annotation>constructor method of class AuthService.</annotation>
+        </apps_api_src_auth_auth_service_ts_AuthService_constructor_METHOD>
+        <apps_api_src_auth_auth_service_ts_AuthService_requestLogin_METHOD TYPE="IS_METHOD_OF_CLASS" NAME="requestLogin">
+          <keywords>auth, method, Service</keywords>
+          <terms>requestLogin</terms>
+          <annotation>requestLogin method of class AuthService.</annotation>
+        </apps_api_src_auth_auth_service_ts_AuthService_requestLogin_METHOD>
+        <apps_api_src_auth_auth_service_ts_AuthService_verifyLogin_METHOD TYPE="IS_METHOD_OF_CLASS" NAME="verifyLogin">
+          <keywords>auth, method, Service</keywords>
+          <terms>verifyLogin</terms>
+          <annotation>verifyLogin method of class AuthService.</annotation>
+        </apps_api_src_auth_auth_service_ts_AuthService_verifyLogin_METHOD>
+      </apps_api_src_auth_auth_service_ts_AuthService_CLASS>
+    </apps_api_src_auth_auth_service_ts>
+    <apps_api_src_auth_decorators_current_user_decorator_ts TYPE="DECORATOR_MODULE" FILE="apps/api/src/auth/decorators/current-user.decorator.ts">
+      <keywords>auth, Decorator, CITYRNNG</keywords>
+      <terms>CurrentUser</terms>
+      <annotation>Предоставляет вспомогательные decorators для домена auth.</annotation>
+      <CrossLinks>
+        <Link TARGET="apps_api_src_auth_types_ts" TYPE="USES_MODULE" />
+      </CrossLinks>
+    </apps_api_src_auth_decorators_current_user_decorator_ts>
+    <apps_api_src_auth_decorators_public_decorator_ts TYPE="DECORATOR_MODULE" FILE="apps/api/src/auth/decorators/public.decorator.ts">
+      <keywords>auth, Decorator, CITYRNNG</keywords>
+      <terms>IS_PUBLIC_KEY, Public</terms>
+      <annotation>Предоставляет вспомогательные decorators для домена auth.</annotation>
+    </apps_api_src_auth_decorators_public_decorator_ts>
+    <apps_api_src_auth_decorators_roles_decorator_ts TYPE="DECORATOR_MODULE" FILE="apps/api/src/auth/decorators/roles.decorator.ts">
+      <keywords>auth, Decorator, CITYRNNG</keywords>
+      <terms>ROLES_KEY, Roles</terms>
+      <annotation>Предоставляет вспомогательные decorators для домена auth.</annotation>
+    </apps_api_src_auth_decorators_roles_decorator_ts>
+    <apps_api_src_auth_dto_request_login_dto_ts TYPE="DTO_MODULE" FILE="apps/api/src/auth/dto/request-login.dto.ts">
+      <keywords>auth, DTO, CITYRNNG</keywords>
+      <terms>RequestLoginDto</terms>
+      <annotation>Описывает контракт входных и выходных данных домена auth.</annotation>
+      <apps_api_src_auth_dto_request_login_dto_ts_RequestLoginDto_CLASS TYPE="IS_CLASS_OF_MODULE" NAME="RequestLoginDto">
+        <keywords>auth, class, DTO</keywords>
+        <terms></terms>
+        <annotation>Класс RequestLoginDto реализует ответственность модуля apps/api/src/auth/dto/request-login.dto.ts.</annotation>
+      </apps_api_src_auth_dto_request_login_dto_ts_RequestLoginDto_CLASS>
+    </apps_api_src_auth_dto_request_login_dto_ts>
+    <apps_api_src_auth_dto_verify_login_dto_ts TYPE="DTO_MODULE" FILE="apps/api/src/auth/dto/verify-login.dto.ts">
+      <keywords>auth, DTO, CITYRNNG</keywords>
+      <terms>VerifyLoginDto</terms>
+      <annotation>Описывает контракт входных и выходных данных домена auth.</annotation>
+      <apps_api_src_auth_dto_verify_login_dto_ts_VerifyLoginDto_CLASS TYPE="IS_CLASS_OF_MODULE" NAME="VerifyLoginDto">
+        <keywords>auth, class, DTO</keywords>
+        <terms></terms>
+        <annotation>Класс VerifyLoginDto реализует ответственность модуля apps/api/src/auth/dto/verify-login.dto.ts.</annotation>
+      </apps_api_src_auth_dto_verify_login_dto_ts_VerifyLoginDto_CLASS>
+    </apps_api_src_auth_dto_verify_login_dto_ts>
+    <apps_api_src_auth_guards_jwt_auth_guard_ts TYPE="GUARD_MODULE" FILE="apps/api/src/auth/guards/jwt-auth.guard.ts">
+      <keywords>auth, Guard, CITYRNNG</keywords>
+      <terms>JwtAuthGuard, extractBearer</terms>
+      <annotation>Проверяет правила доступа и ограничения безопасности домена auth.</annotation>
+      <apps_api_src_auth_guards_jwt_auth_guard_ts_JwtAuthGuard_CLASS TYPE="IS_CLASS_OF_MODULE" NAME="JwtAuthGuard">
+        <keywords>auth, class, Guard</keywords>
+        <terms>constructor, canActivate</terms>
+        <annotation>Класс JwtAuthGuard реализует ответственность модуля apps/api/src/auth/guards/jwt-auth.guard.ts.</annotation>
+        <apps_api_src_auth_guards_jwt_auth_guard_ts_JwtAuthGuard_constructor_METHOD TYPE="IS_METHOD_OF_CLASS" NAME="constructor">
+          <keywords>auth, method, Guard</keywords>
+          <terms>constructor</terms>
+          <annotation>constructor method of class JwtAuthGuard.</annotation>
+        </apps_api_src_auth_guards_jwt_auth_guard_ts_JwtAuthGuard_constructor_METHOD>
+        <apps_api_src_auth_guards_jwt_auth_guard_ts_JwtAuthGuard_canActivate_METHOD TYPE="IS_METHOD_OF_CLASS" NAME="canActivate">
+          <keywords>auth, method, Guard</keywords>
+          <terms>canActivate</terms>
+          <annotation>canActivate method of class JwtAuthGuard.</annotation>
+        </apps_api_src_auth_guards_jwt_auth_guard_ts_JwtAuthGuard_canActivate_METHOD>
+      </apps_api_src_auth_guards_jwt_auth_guard_ts_JwtAuthGuard_CLASS>
+      <apps_api_src_auth_guards_jwt_auth_guard_ts_extractBearer_FUNC TYPE="IS_FUNCTION_OF_MODULE" NAME="extractBearer">
+        <keywords>auth, function, Guard</keywords>
+        <terms>extractBearer</terms>
+        <annotation>Function extractBearer of module apps/api/src/auth/guards/jwt-auth.guard.ts.</annotation>
+      </apps_api_src_auth_guards_jwt_auth_guard_ts_extractBearer_FUNC>
+      <CrossLinks>
+        <Link TARGET="apps_api_src_auth_types_ts" TYPE="USES_MODULE" />
+      </CrossLinks>
+    </apps_api_src_auth_guards_jwt_auth_guard_ts>
+    <apps_api_src_auth_guards_roles_guard_ts TYPE="GUARD_MODULE" FILE="apps/api/src/auth/guards/roles.guard.ts">
+      <keywords>auth, Guard, CITYRNNG</keywords>
+      <terms>RolesGuard</terms>
+      <annotation>Проверяет правила доступа и ограничения безопасности домена auth.</annotation>
+      <apps_api_src_auth_guards_roles_guard_ts_RolesGuard_CLASS TYPE="IS_CLASS_OF_MODULE" NAME="RolesGuard">
+        <keywords>auth, class, Guard</keywords>
+        <terms>constructor, canActivate</terms>
+        <annotation>Класс RolesGuard реализует ответственность модуля apps/api/src/auth/guards/roles.guard.ts.</annotation>
+        <apps_api_src_auth_guards_roles_guard_ts_RolesGuard_constructor_METHOD TYPE="IS_METHOD_OF_CLASS" NAME="constructor">
+          <keywords>auth, method, Guard</keywords>
+          <terms>constructor</terms>
+          <annotation>constructor method of class RolesGuard.</annotation>
+        </apps_api_src_auth_guards_roles_guard_ts_RolesGuard_constructor_METHOD>
+        <apps_api_src_auth_guards_roles_guard_ts_RolesGuard_canActivate_METHOD TYPE="IS_METHOD_OF_CLASS" NAME="canActivate">
+          <keywords>auth, method, Guard</keywords>
+          <terms>canActivate</terms>
+          <annotation>canActivate method of class RolesGuard.</annotation>
+        </apps_api_src_auth_guards_roles_guard_ts_RolesGuard_canActivate_METHOD>
+      </apps_api_src_auth_guards_roles_guard_ts_RolesGuard_CLASS>
+      <CrossLinks>
+        <Link TARGET="apps_api_src_auth_types_ts" TYPE="USES_MODULE" />
+      </CrossLinks>
+    </apps_api_src_auth_guards_roles_guard_ts>
+    <apps_api_src_auth_login_challenge_service_ts TYPE="SERVICE_MODULE" FILE="apps/api/src/auth/login-challenge.service.ts">
+      <keywords>auth, Service, CITYRNNG</keywords>
+      <terms>LoginChallengeService, hashToken, IssuedChallenge</terms>
+      <annotation>Реализует бизнес-логику и координирует операции домена auth.</annotation>
+      <apps_api_src_auth_login_challenge_service_ts_LoginChallengeService_CLASS TYPE="IS_CLASS_OF_MODULE" NAME="LoginChallengeService">
+        <keywords>auth, class, Service</keywords>
+        <terms>constructor, issue, consume</terms>
+        <annotation>Класс LoginChallengeService реализует ответственность модуля apps/api/src/auth/login-challenge.service.ts.</annotation>
+        <apps_api_src_auth_login_challenge_service_ts_LoginChallengeService_constructor_METHOD TYPE="IS_METHOD_OF_CLASS" NAME="constructor">
+          <keywords>auth, method, Service</keywords>
+          <terms>constructor</terms>
+          <annotation>constructor method of class LoginChallengeService.</annotation>
+        </apps_api_src_auth_login_challenge_service_ts_LoginChallengeService_constructor_METHOD>
+        <apps_api_src_auth_login_challenge_service_ts_LoginChallengeService_issue_METHOD TYPE="IS_METHOD_OF_CLASS" NAME="issue">
+          <keywords>auth, method, Service</keywords>
+          <terms>issue</terms>
+          <annotation>issue method of class LoginChallengeService.</annotation>
+        </apps_api_src_auth_login_challenge_service_ts_LoginChallengeService_issue_METHOD>
+        <apps_api_src_auth_login_challenge_service_ts_LoginChallengeService_consume_METHOD TYPE="IS_METHOD_OF_CLASS" NAME="consume">
+          <keywords>auth, method, Service</keywords>
+          <terms>consume</terms>
+          <annotation>consume method of class LoginChallengeService.</annotation>
+        </apps_api_src_auth_login_challenge_service_ts_LoginChallengeService_consume_METHOD>
+      </apps_api_src_auth_login_challenge_service_ts_LoginChallengeService_CLASS>
+      <apps_api_src_auth_login_challenge_service_ts_hashToken_FUNC TYPE="IS_FUNCTION_OF_MODULE" NAME="hashToken">
+        <keywords>auth, function, Service</keywords>
+        <terms>hashToken</terms>
+        <annotation>Function hashToken of module apps/api/src/auth/login-challenge.service.ts.</annotation>
+      </apps_api_src_auth_login_challenge_service_ts_hashToken_FUNC>
+    </apps_api_src_auth_login_challenge_service_ts>
+    <apps_api_src_auth_tokens_service_ts TYPE="SERVICE_MODULE" FILE="apps/api/src/auth/tokens.service.ts">
+      <keywords>auth, Service, CITYRNNG</keywords>
+      <terms>TokensService, hashRefresh, IssuedTokens</terms>
+      <annotation>Реализует бизнес-логику и координирует операции домена auth.</annotation>
+      <apps_api_src_auth_tokens_service_ts_TokensService_CLASS TYPE="IS_CLASS_OF_MODULE" NAME="TokensService">
+        <keywords>auth, class, Service</keywords>
+        <terms>constructor, issue</terms>
+        <annotation>Класс TokensService реализует ответственность модуля apps/api/src/auth/tokens.service.ts.</annotation>
+        <apps_api_src_auth_tokens_service_ts_TokensService_constructor_METHOD TYPE="IS_METHOD_OF_CLASS" NAME="constructor">
+          <keywords>auth, method, Service</keywords>
+          <terms>constructor</terms>
+          <annotation>constructor method of class TokensService.</annotation>
+        </apps_api_src_auth_tokens_service_ts_TokensService_constructor_METHOD>
+        <apps_api_src_auth_tokens_service_ts_TokensService_issue_METHOD TYPE="IS_METHOD_OF_CLASS" NAME="issue">
+          <keywords>auth, method, Service</keywords>
+          <terms>issue</terms>
+          <annotation>issue method of class TokensService.</annotation>
+        </apps_api_src_auth_tokens_service_ts_TokensService_issue_METHOD>
+      </apps_api_src_auth_tokens_service_ts_TokensService_CLASS>
+      <apps_api_src_auth_tokens_service_ts_hashRefresh_FUNC TYPE="IS_FUNCTION_OF_MODULE" NAME="hashRefresh">
+        <keywords>auth, function, Service</keywords>
+        <terms>hashRefresh</terms>
+        <annotation>Function hashRefresh of module apps/api/src/auth/tokens.service.ts.</annotation>
+      </apps_api_src_auth_tokens_service_ts_hashRefresh_FUNC>
+      <CrossLinks>
+        <Link TARGET="apps_api_src_auth_types_ts" TYPE="USES_MODULE" />
+      </CrossLinks>
+    </apps_api_src_auth_tokens_service_ts>
+    <apps_api_src_auth_types_ts TYPE="TYPES_MODULE" FILE="apps/api/src/auth/types.ts">
+      <keywords>auth, Types, CITYRNNG</keywords>
+      <terms>AuthenticatedUser, AccessTokenPayload, RoleCode, ROLE_RUNNER, ROLE_ADMIN, ROLE_PARTNER</terms>
+      <annotation>Содержит общие типы и контракты домена auth.</annotation>
+    </apps_api_src_auth_types_ts>
+    <apps_api_src_config_env_schema_ts TYPE="CONFIG_MODULE" FILE="apps/api/src/config/env.schema.ts">
+      <keywords>config, Config, CITYRNNG</keywords>
+      <terms>Env, envSchema</terms>
+      <annotation>Определяет конфигурацию и валидацию окружения приложения.</annotation>
+    </apps_api_src_config_env_schema_ts>
+    <apps_api_src_config_env_validation_ts TYPE="CONFIG_MODULE" FILE="apps/api/src/config/env.validation.ts">
+      <keywords>config, Config, CITYRNNG</keywords>
+      <terms>validateEnv</terms>
+      <annotation>Определяет конфигурацию и валидацию окружения приложения.</annotation>
+      <apps_api_src_config_env_validation_ts_validateEnv_FUNC TYPE="IS_FUNCTION_OF_MODULE" NAME="validateEnv">
+        <keywords>config, function, Config</keywords>
+        <terms>validateEnv</terms>
+        <annotation>Function validateEnv of module apps/api/src/config/env.validation.ts.</annotation>
+      </apps_api_src_config_env_validation_ts_validateEnv_FUNC>
+    </apps_api_src_config_env_validation_ts>
+    <apps_api_src_crypto_crypto_module_ts TYPE="MODULE_MODULE" FILE="apps/api/src/crypto/crypto.module.ts">
+      <keywords>crypto, Module, CITYRNNG</keywords>
+      <terms>CryptoModule</terms>
+      <annotation>Связывает провайдеры и экспортирует зависимости домена crypto.</annotation>
+      <apps_api_src_crypto_crypto_module_ts_CryptoModule_CLASS TYPE="IS_CLASS_OF_MODULE" NAME="CryptoModule">
+        <keywords>crypto, class, Module</keywords>
+        <terms></terms>
+        <annotation>Класс CryptoModule реализует ответственность модуля apps/api/src/crypto/crypto.module.ts.</annotation>
+      </apps_api_src_crypto_crypto_module_ts_CryptoModule_CLASS>
+    </apps_api_src_crypto_crypto_module_ts>
+    <apps_api_src_crypto_crypto_service_ts TYPE="SERVICE_MODULE" FILE="apps/api/src/crypto/crypto.service.ts">
+      <keywords>crypto, Service, CITYRNNG</keywords>
+      <terms>CryptoService, ALGO, IV_LEN, TAG_LEN, VERSION</terms>
+      <annotation>Реализует бизнес-логику и координирует операции домена crypto.</annotation>
+      <apps_api_src_crypto_crypto_service_ts_CryptoService_CLASS TYPE="IS_CLASS_OF_MODULE" NAME="CryptoService">
+        <keywords>crypto, class, Service</keywords>
+        <terms>constructor, encrypt, decrypt</terms>
+        <annotation>Класс CryptoService реализует ответственность модуля apps/api/src/crypto/crypto.service.ts.</annotation>
+        <apps_api_src_crypto_crypto_service_ts_CryptoService_constructor_METHOD TYPE="IS_METHOD_OF_CLASS" NAME="constructor">
+          <keywords>crypto, method, Service</keywords>
+          <terms>constructor</terms>
+          <annotation>constructor method of class CryptoService.</annotation>
+        </apps_api_src_crypto_crypto_service_ts_CryptoService_constructor_METHOD>
+        <apps_api_src_crypto_crypto_service_ts_CryptoService_encrypt_METHOD TYPE="IS_METHOD_OF_CLASS" NAME="encrypt">
+          <keywords>crypto, method, Service</keywords>
+          <terms>encrypt</terms>
+          <annotation>encrypt method of class CryptoService.</annotation>
+        </apps_api_src_crypto_crypto_service_ts_CryptoService_encrypt_METHOD>
+        <apps_api_src_crypto_crypto_service_ts_CryptoService_decrypt_METHOD TYPE="IS_METHOD_OF_CLASS" NAME="decrypt">
+          <keywords>crypto, method, Service</keywords>
+          <terms>decrypt</terms>
+          <annotation>decrypt method of class CryptoService.</annotation>
+        </apps_api_src_crypto_crypto_service_ts_CryptoService_decrypt_METHOD>
+      </apps_api_src_crypto_crypto_service_ts_CryptoService_CLASS>
+    </apps_api_src_crypto_crypto_service_ts>
+    <apps_api_src_events_admin_events_controller_ts TYPE="CONTROLLER_MODULE" FILE="apps/api/src/events/admin-events.controller.ts">
+      <keywords>events, Controller, CITYRNNG</keywords>
+      <terms>ListAttendancesQuery, AdminEventsController</terms>
+      <annotation>Определяет HTTP-контроллер и маршруты домена events.</annotation>
+      <apps_api_src_events_admin_events_controller_ts_ListAttendancesQuery_CLASS TYPE="IS_CLASS_OF_MODULE" NAME="ListAttendancesQuery">
+        <keywords>events, class, Controller</keywords>
+        <terms></terms>
+        <annotation>Класс ListAttendancesQuery реализует ответственность модуля apps/api/src/events/admin-events.controller.ts.</annotation>
+      </apps_api_src_events_admin_events_controller_ts_ListAttendancesQuery_CLASS>
+      <apps_api_src_events_admin_events_controller_ts_AdminEventsController_CLASS TYPE="IS_CLASS_OF_MODULE" NAME="AdminEventsController">
+        <keywords>events, class, Controller</keywords>
+        <terms>constructor, create, update, upsertSyncRule, listAttendances</terms>
+        <annotation>Класс AdminEventsController реализует ответственность модуля apps/api/src/events/admin-events.controller.ts.</annotation>
+        <apps_api_src_events_admin_events_controller_ts_AdminEventsController_constructor_METHOD TYPE="IS_METHOD_OF_CLASS" NAME="constructor">
+          <keywords>events, method, Controller</keywords>
+          <terms>constructor</terms>
+          <annotation>constructor method of class AdminEventsController.</annotation>
+        </apps_api_src_events_admin_events_controller_ts_AdminEventsController_constructor_METHOD>
+        <apps_api_src_events_admin_events_controller_ts_AdminEventsController_create_METHOD TYPE="IS_METHOD_OF_CLASS" NAME="create">
+          <keywords>events, method, Controller</keywords>
+          <terms>create</terms>
+          <annotation>create method of class AdminEventsController.</annotation>
+        </apps_api_src_events_admin_events_controller_ts_AdminEventsController_create_METHOD>
+        <apps_api_src_events_admin_events_controller_ts_AdminEventsController_update_METHOD TYPE="IS_METHOD_OF_CLASS" NAME="update">
+          <keywords>events, method, Controller</keywords>
+          <terms>update</terms>
+          <annotation>update method of class AdminEventsController.</annotation>
+        </apps_api_src_events_admin_events_controller_ts_AdminEventsController_update_METHOD>
+        <apps_api_src_events_admin_events_controller_ts_AdminEventsController_upsertSyncRule_METHOD TYPE="IS_METHOD_OF_CLASS" NAME="upsertSyncRule">
+          <keywords>events, method, Controller</keywords>
+          <terms>upsertSyncRule</terms>
+          <annotation>upsertSyncRule method of class AdminEventsController.</annotation>
+        </apps_api_src_events_admin_events_controller_ts_AdminEventsController_upsertSyncRule_METHOD>
+        <apps_api_src_events_admin_events_controller_ts_AdminEventsController_listAttendances_METHOD TYPE="IS_METHOD_OF_CLASS" NAME="listAttendances">
+          <keywords>events, method, Controller</keywords>
+          <terms>listAttendances</terms>
+          <annotation>listAttendances method of class AdminEventsController.</annotation>
+        </apps_api_src_events_admin_events_controller_ts_AdminEventsController_listAttendances_METHOD>
+      </apps_api_src_events_admin_events_controller_ts_AdminEventsController_CLASS>
+      <CrossLinks>
+        <Link TARGET="apps_api_src_auth_types_ts" TYPE="USES_MODULE" />
+      </CrossLinks>
+    </apps_api_src_events_admin_events_controller_ts>
+    <apps_api_src_events_dto_create_event_dto_ts TYPE="DTO_MODULE" FILE="apps/api/src/events/dto/create-event.dto.ts">
+      <keywords>events, DTO, CITYRNNG</keywords>
+      <terms>CreateEventDto, SLUG_REGEX</terms>
+      <annotation>Описывает контракт входных и выходных данных домена events.</annotation>
+      <apps_api_src_events_dto_create_event_dto_ts_CreateEventDto_CLASS TYPE="IS_CLASS_OF_MODULE" NAME="CreateEventDto">
+        <keywords>events, class, DTO</keywords>
+        <terms></terms>
+        <annotation>Класс CreateEventDto реализует ответственность модуля apps/api/src/events/dto/create-event.dto.ts.</annotation>
+      </apps_api_src_events_dto_create_event_dto_ts_CreateEventDto_CLASS>
+    </apps_api_src_events_dto_create_event_dto_ts>
+    <apps_api_src_events_dto_list_events_query_ts TYPE="DTO_MODULE" FILE="apps/api/src/events/dto/list-events.query.ts">
+      <keywords>events, DTO, CITYRNNG</keywords>
+      <terms>ListEventsQuery</terms>
+      <annotation>Описывает контракт входных и выходных данных домена events.</annotation>
+      <apps_api_src_events_dto_list_events_query_ts_ListEventsQuery_CLASS TYPE="IS_CLASS_OF_MODULE" NAME="ListEventsQuery">
+        <keywords>events, class, DTO</keywords>
+        <terms></terms>
+        <annotation>Класс ListEventsQuery реализует ответственность модуля apps/api/src/events/dto/list-events.query.ts.</annotation>
+      </apps_api_src_events_dto_list_events_query_ts_ListEventsQuery_CLASS>
+    </apps_api_src_events_dto_list_events_query_ts>
+    <apps_api_src_events_dto_update_event_dto_ts TYPE="DTO_MODULE" FILE="apps/api/src/events/dto/update-event.dto.ts">
+      <keywords>events, DTO, CITYRNNG</keywords>
+      <terms>UpdateEventDto, SLUG_REGEX</terms>
+      <annotation>Описывает контракт входных и выходных данных домена events.</annotation>
+      <apps_api_src_events_dto_update_event_dto_ts_UpdateEventDto_CLASS TYPE="IS_CLASS_OF_MODULE" NAME="UpdateEventDto">
+        <keywords>events, class, DTO</keywords>
+        <terms></terms>
+        <annotation>Класс UpdateEventDto реализует ответственность модуля apps/api/src/events/dto/update-event.dto.ts.</annotation>
+      </apps_api_src_events_dto_update_event_dto_ts_UpdateEventDto_CLASS>
+    </apps_api_src_events_dto_update_event_dto_ts>
+    <apps_api_src_events_dto_upsert_sync_rule_dto_ts TYPE="DTO_MODULE" FILE="apps/api/src/events/dto/upsert-sync-rule.dto.ts">
+      <keywords>events, DTO, CITYRNNG</keywords>
+      <terms>UpsertSyncRuleDto</terms>
+      <annotation>Описывает контракт входных и выходных данных домена events.</annotation>
+      <apps_api_src_events_dto_upsert_sync_rule_dto_ts_UpsertSyncRuleDto_CLASS TYPE="IS_CLASS_OF_MODULE" NAME="UpsertSyncRuleDto">
+        <keywords>events, class, DTO</keywords>
+        <terms></terms>
+        <annotation>Класс UpsertSyncRuleDto реализует ответственность модуля apps/api/src/events/dto/upsert-sync-rule.dto.ts.</annotation>
+      </apps_api_src_events_dto_upsert_sync_rule_dto_ts_UpsertSyncRuleDto_CLASS>
+    </apps_api_src_events_dto_upsert_sync_rule_dto_ts>
+    <apps_api_src_events_events_controller_ts TYPE="CONTROLLER_MODULE" FILE="apps/api/src/events/events.controller.ts">
+      <keywords>events, Controller, CITYRNNG</keywords>
+      <terms>EventsController</terms>
+      <annotation>Определяет HTTP-контроллер и маршруты домена events.</annotation>
+      <apps_api_src_events_events_controller_ts_EventsController_CLASS TYPE="IS_CLASS_OF_MODULE" NAME="EventsController">
+        <keywords>events, class, Controller</keywords>
+        <terms>constructor, list, getOne</terms>
+        <annotation>Класс EventsController реализует ответственность модуля apps/api/src/events/events.controller.ts.</annotation>
+        <apps_api_src_events_events_controller_ts_EventsController_constructor_METHOD TYPE="IS_METHOD_OF_CLASS" NAME="constructor">
+          <keywords>events, method, Controller</keywords>
+          <terms>constructor</terms>
+          <annotation>constructor method of class EventsController.</annotation>
+        </apps_api_src_events_events_controller_ts_EventsController_constructor_METHOD>
+        <apps_api_src_events_events_controller_ts_EventsController_list_METHOD TYPE="IS_METHOD_OF_CLASS" NAME="list">
+          <keywords>events, method, Controller</keywords>
+          <terms>list</terms>
+          <annotation>list method of class EventsController.</annotation>
+        </apps_api_src_events_events_controller_ts_EventsController_list_METHOD>
+        <apps_api_src_events_events_controller_ts_EventsController_getOne_METHOD TYPE="IS_METHOD_OF_CLASS" NAME="getOne">
+          <keywords>events, method, Controller</keywords>
+          <terms>getOne</terms>
+          <annotation>getOne method of class EventsController.</annotation>
+        </apps_api_src_events_events_controller_ts_EventsController_getOne_METHOD>
+      </apps_api_src_events_events_controller_ts_EventsController_CLASS>
+    </apps_api_src_events_events_controller_ts>
+    <apps_api_src_events_events_module_ts TYPE="MODULE_MODULE" FILE="apps/api/src/events/events.module.ts">
+      <keywords>events, Module, CITYRNNG</keywords>
+      <terms>EventsModule</terms>
+      <annotation>Связывает провайдеры и экспортирует зависимости домена events.</annotation>
+      <apps_api_src_events_events_module_ts_EventsModule_CLASS TYPE="IS_CLASS_OF_MODULE" NAME="EventsModule">
+        <keywords>events, class, Module</keywords>
+        <terms></terms>
+        <annotation>Класс EventsModule реализует ответственность модуля apps/api/src/events/events.module.ts.</annotation>
+      </apps_api_src_events_events_module_ts_EventsModule_CLASS>
+    </apps_api_src_events_events_module_ts>
+    <apps_api_src_events_events_service_ts TYPE="SERVICE_MODULE" FILE="apps/api/src/events/events.service.ts">
+      <keywords>events, Service, CITYRNNG</keywords>
+      <terms>EventsService, assertDateRange, isUniqueViolation, mapEventPublic, EventWithPublicSyncRule, publicSyncRuleInclude</terms>
+      <annotation>Реализует бизнес-логику и координирует операции домена events.</annotation>
+      <apps_api_src_events_events_service_ts_EventsService_CLASS TYPE="IS_CLASS_OF_MODULE" NAME="EventsService">
+        <keywords>events, class, Service</keywords>
+        <terms>constructor, listPublic, getByIdOrThrow, getAdminByIdOrThrow, create, update</terms>
+        <annotation>Класс EventsService реализует ответственность модуля apps/api/src/events/events.service.ts.</annotation>
+        <apps_api_src_events_events_service_ts_EventsService_constructor_METHOD TYPE="IS_METHOD_OF_CLASS" NAME="constructor">
+          <keywords>events, method, Service</keywords>
+          <terms>constructor</terms>
+          <annotation>constructor method of class EventsService.</annotation>
+        </apps_api_src_events_events_service_ts_EventsService_constructor_METHOD>
+        <apps_api_src_events_events_service_ts_EventsService_listPublic_METHOD TYPE="IS_METHOD_OF_CLASS" NAME="listPublic">
+          <keywords>events, method, Service</keywords>
+          <terms>listPublic</terms>
+          <annotation>listPublic method of class EventsService.</annotation>
+        </apps_api_src_events_events_service_ts_EventsService_listPublic_METHOD>
+        <apps_api_src_events_events_service_ts_EventsService_getByIdOrThrow_METHOD TYPE="IS_METHOD_OF_CLASS" NAME="getByIdOrThrow">
+          <keywords>events, method, Service</keywords>
+          <terms>getByIdOrThrow</terms>
+          <annotation>getByIdOrThrow method of class EventsService.</annotation>
+        </apps_api_src_events_events_service_ts_EventsService_getByIdOrThrow_METHOD>
+        <apps_api_src_events_events_service_ts_EventsService_getAdminByIdOrThrow_METHOD TYPE="IS_METHOD_OF_CLASS" NAME="getAdminByIdOrThrow">
+          <keywords>events, method, Service</keywords>
+          <terms>getAdminByIdOrThrow</terms>
+          <annotation>getAdminByIdOrThrow method of class EventsService.</annotation>
+        </apps_api_src_events_events_service_ts_EventsService_getAdminByIdOrThrow_METHOD>
+        <apps_api_src_events_events_service_ts_EventsService_create_METHOD TYPE="IS_METHOD_OF_CLASS" NAME="create">
+          <keywords>events, method, Service</keywords>
+          <terms>create</terms>
+          <annotation>create method of class EventsService.</annotation>
+        </apps_api_src_events_events_service_ts_EventsService_create_METHOD>
+        <apps_api_src_events_events_service_ts_EventsService_update_METHOD TYPE="IS_METHOD_OF_CLASS" NAME="update">
+          <keywords>events, method, Service</keywords>
+          <terms>update</terms>
+          <annotation>update method of class EventsService.</annotation>
+        </apps_api_src_events_events_service_ts_EventsService_update_METHOD>
+      </apps_api_src_events_events_service_ts_EventsService_CLASS>
+      <apps_api_src_events_events_service_ts_assertDateRange_FUNC TYPE="IS_FUNCTION_OF_MODULE" NAME="assertDateRange">
+        <keywords>events, function, Service</keywords>
+        <terms>assertDateRange</terms>
+        <annotation>Function assertDateRange of module apps/api/src/events/events.service.ts.</annotation>
+      </apps_api_src_events_events_service_ts_assertDateRange_FUNC>
+      <apps_api_src_events_events_service_ts_isUniqueViolation_FUNC TYPE="IS_FUNCTION_OF_MODULE" NAME="isUniqueViolation">
+        <keywords>events, function, Service</keywords>
+        <terms>isUniqueViolation</terms>
+        <annotation>Function isUniqueViolation of module apps/api/src/events/events.service.ts.</annotation>
+      </apps_api_src_events_events_service_ts_isUniqueViolation_FUNC>
+      <apps_api_src_events_events_service_ts_mapEventPublic_FUNC TYPE="IS_FUNCTION_OF_MODULE" NAME="mapEventPublic">
+        <keywords>events, function, Service</keywords>
+        <terms>mapEventPublic</terms>
+        <annotation>Function mapEventPublic of module apps/api/src/events/events.service.ts.</annotation>
+      </apps_api_src_events_events_service_ts_mapEventPublic_FUNC>
+    </apps_api_src_events_events_service_ts>
+    <apps_api_src_events_sync_rules_service_ts TYPE="SERVICE_MODULE" FILE="apps/api/src/events/sync-rules.service.ts">
+      <keywords>events, Service, CITYRNNG</keywords>
+      <terms>SyncRulesService, assertOptionalRange, assertGeofence</terms>
+      <annotation>Реализует бизнес-логику и координирует операции домена events.</annotation>
+      <apps_api_src_events_sync_rules_service_ts_SyncRulesService_CLASS TYPE="IS_CLASS_OF_MODULE" NAME="SyncRulesService">
+        <keywords>events, class, Service</keywords>
+        <terms>constructor, upsertForEvent</terms>
+        <annotation>Класс SyncRulesService реализует ответственность модуля apps/api/src/events/sync-rules.service.ts.</annotation>
+        <apps_api_src_events_sync_rules_service_ts_SyncRulesService_constructor_METHOD TYPE="IS_METHOD_OF_CLASS" NAME="constructor">
+          <keywords>events, method, Service</keywords>
+          <terms>constructor</terms>
+          <annotation>constructor method of class SyncRulesService.</annotation>
+        </apps_api_src_events_sync_rules_service_ts_SyncRulesService_constructor_METHOD>
+        <apps_api_src_events_sync_rules_service_ts_SyncRulesService_upsertForEvent_METHOD TYPE="IS_METHOD_OF_CLASS" NAME="upsertForEvent">
+          <keywords>events, method, Service</keywords>
+          <terms>upsertForEvent</terms>
+          <annotation>upsertForEvent method of class SyncRulesService.</annotation>
+        </apps_api_src_events_sync_rules_service_ts_SyncRulesService_upsertForEvent_METHOD>
+      </apps_api_src_events_sync_rules_service_ts_SyncRulesService_CLASS>
+      <apps_api_src_events_sync_rules_service_ts_assertOptionalRange_FUNC TYPE="IS_FUNCTION_OF_MODULE" NAME="assertOptionalRange">
+        <keywords>events, function, Service</keywords>
+        <terms>assertOptionalRange</terms>
+        <annotation>Function assertOptionalRange of module apps/api/src/events/sync-rules.service.ts.</annotation>
+      </apps_api_src_events_sync_rules_service_ts_assertOptionalRange_FUNC>
+      <apps_api_src_events_sync_rules_service_ts_assertGeofence_FUNC TYPE="IS_FUNCTION_OF_MODULE" NAME="assertGeofence">
+        <keywords>events, function, Service</keywords>
+        <terms>assertGeofence</terms>
+        <annotation>Function assertGeofence of module apps/api/src/events/sync-rules.service.ts.</annotation>
+      </apps_api_src_events_sync_rules_service_ts_assertGeofence_FUNC>
+    </apps_api_src_events_sync_rules_service_ts>
+    <apps_api_src_health_health_controller_ts TYPE="CONTROLLER_MODULE" FILE="apps/api/src/health/health.controller.ts">
+      <keywords>health, Controller, CITYRNNG</keywords>
+      <terms>HealthController</terms>
+      <annotation>Определяет HTTP-контроллер и маршруты домена health.</annotation>
+      <apps_api_src_health_health_controller_ts_HealthController_CLASS TYPE="IS_CLASS_OF_MODULE" NAME="HealthController">
+        <keywords>health, class, Controller</keywords>
+        <terms>constructor, check, checkDb</terms>
+        <annotation>Класс HealthController реализует ответственность модуля apps/api/src/health/health.controller.ts.</annotation>
+        <apps_api_src_health_health_controller_ts_HealthController_constructor_METHOD TYPE="IS_METHOD_OF_CLASS" NAME="constructor">
+          <keywords>health, method, Controller</keywords>
+          <terms>constructor</terms>
+          <annotation>constructor method of class HealthController.</annotation>
+        </apps_api_src_health_health_controller_ts_HealthController_constructor_METHOD>
+        <apps_api_src_health_health_controller_ts_HealthController_check_METHOD TYPE="IS_METHOD_OF_CLASS" NAME="check">
+          <keywords>health, method, Controller</keywords>
+          <terms>check</terms>
+          <annotation>check method of class HealthController.</annotation>
+        </apps_api_src_health_health_controller_ts_HealthController_check_METHOD>
+        <apps_api_src_health_health_controller_ts_HealthController_checkDb_METHOD TYPE="IS_METHOD_OF_CLASS" NAME="checkDb">
+          <keywords>health, method, Controller</keywords>
+          <terms>checkDb</terms>
+          <annotation>checkDb method of class HealthController.</annotation>
+        </apps_api_src_health_health_controller_ts_HealthController_checkDb_METHOD>
+      </apps_api_src_health_health_controller_ts_HealthController_CLASS>
+    </apps_api_src_health_health_controller_ts>
+    <apps_api_src_health_health_module_ts TYPE="MODULE_MODULE" FILE="apps/api/src/health/health.module.ts">
+      <keywords>health, Module, CITYRNNG</keywords>
+      <terms>HealthModule</terms>
+      <annotation>Связывает провайдеры и экспортирует зависимости домена health.</annotation>
+      <apps_api_src_health_health_module_ts_HealthModule_CLASS TYPE="IS_CLASS_OF_MODULE" NAME="HealthModule">
+        <keywords>health, class, Module</keywords>
+        <terms></terms>
+        <annotation>Класс HealthModule реализует ответственность модуля apps/api/src/health/health.module.ts.</annotation>
+      </apps_api_src_health_health_module_ts_HealthModule_CLASS>
+    </apps_api_src_health_health_module_ts>
+    <apps_api_src_integrations_strava_admin_strava_controller_ts TYPE="CONTROLLER_MODULE" FILE="apps/api/src/integrations/strava/admin-strava.controller.ts">
+      <keywords>strava, Controller, CITYRNNG</keywords>
+      <terms>AdminStravaController</terms>
+      <annotation>Определяет HTTP-контроллер и маршруты домена strava.</annotation>
+      <apps_api_src_integrations_strava_admin_strava_controller_ts_AdminStravaController_CLASS TYPE="IS_CLASS_OF_MODULE" NAME="AdminStravaController">
+        <keywords>strava, class, Controller</keywords>
+        <terms>constructor, sync, match</terms>
+        <annotation>Класс AdminStravaController реализует ответственность модуля apps/api/src/integrations/strava/admin-strava.controller.ts.</annotation>
+        <apps_api_src_integrations_strava_admin_strava_controller_ts_AdminStravaController_constructor_METHOD TYPE="IS_METHOD_OF_CLASS" NAME="constructor">
+          <keywords>strava, method, Controller</keywords>
+          <terms>constructor</terms>
+          <annotation>constructor method of class AdminStravaController.</annotation>
+        </apps_api_src_integrations_strava_admin_strava_controller_ts_AdminStravaController_constructor_METHOD>
+        <apps_api_src_integrations_strava_admin_strava_controller_ts_AdminStravaController_sync_METHOD TYPE="IS_METHOD_OF_CLASS" NAME="sync">
+          <keywords>strava, method, Controller</keywords>
+          <terms>sync</terms>
+          <annotation>sync method of class AdminStravaController.</annotation>
+        </apps_api_src_integrations_strava_admin_strava_controller_ts_AdminStravaController_sync_METHOD>
+        <apps_api_src_integrations_strava_admin_strava_controller_ts_AdminStravaController_match_METHOD TYPE="IS_METHOD_OF_CLASS" NAME="match">
+          <keywords>strava, method, Controller</keywords>
+          <terms>match</terms>
+          <annotation>match method of class AdminStravaController.</annotation>
+        </apps_api_src_integrations_strava_admin_strava_controller_ts_AdminStravaController_match_METHOD>
+      </apps_api_src_integrations_strava_admin_strava_controller_ts_AdminStravaController_CLASS>
+      <CrossLinks>
+        <Link TARGET="apps_api_src_auth_types_ts" TYPE="USES_MODULE" />
+      </CrossLinks>
+    </apps_api_src_integrations_strava_admin_strava_controller_ts>
+    <apps_api_src_integrations_strava_dto_admin_sync_dto_ts TYPE="DTO_MODULE" FILE="apps/api/src/integrations/strava/dto/admin-sync.dto.ts">
+      <keywords>strava, DTO, CITYRNNG</keywords>
+      <terms>AdminSyncDto</terms>
+      <annotation>Описывает контракт входных и выходных данных домена strava.</annotation>
+      <apps_api_src_integrations_strava_dto_admin_sync_dto_ts_AdminSyncDto_CLASS TYPE="IS_CLASS_OF_MODULE" NAME="AdminSyncDto">
+        <keywords>strava, class, DTO</keywords>
+        <terms></terms>
+        <annotation>Класс AdminSyncDto реализует ответственность модуля apps/api/src/integrations/strava/dto/admin-sync.dto.ts.</annotation>
+      </apps_api_src_integrations_strava_dto_admin_sync_dto_ts_AdminSyncDto_CLASS>
+    </apps_api_src_integrations_strava_dto_admin_sync_dto_ts>
+    <apps_api_src_integrations_strava_dto_callback_query_ts TYPE="DTO_MODULE" FILE="apps/api/src/integrations/strava/dto/callback.query.ts">
+      <keywords>strava, DTO, CITYRNNG</keywords>
+      <terms>StravaCallbackQuery</terms>
+      <annotation>Описывает контракт входных и выходных данных домена strava.</annotation>
+      <apps_api_src_integrations_strava_dto_callback_query_ts_StravaCallbackQuery_CLASS TYPE="IS_CLASS_OF_MODULE" NAME="StravaCallbackQuery">
+        <keywords>strava, class, DTO</keywords>
+        <terms></terms>
+        <annotation>Класс StravaCallbackQuery реализует ответственность модуля apps/api/src/integrations/strava/dto/callback.query.ts.</annotation>
+      </apps_api_src_integrations_strava_dto_callback_query_ts_StravaCallbackQuery_CLASS>
+    </apps_api_src_integrations_strava_dto_callback_query_ts>
+    <apps_api_src_integrations_strava_strava_accounts_service_ts TYPE="SERVICE_MODULE" FILE="apps/api/src/integrations/strava/strava-accounts.service.ts">
+      <keywords>strava, Service, CITYRNNG</keywords>
+      <terms>StravaAccountsService, REFRESH_SKEW_SECONDS</terms>
+      <annotation>Реализует бизнес-логику и координирует операции домена strava.</annotation>
+      <apps_api_src_integrations_strava_strava_accounts_service_ts_StravaAccountsService_CLASS TYPE="IS_CLASS_OF_MODULE" NAME="StravaAccountsService">
+        <keywords>strava, class, Service</keywords>
+        <terms>constructor, upsertFromTokenResponse, findActive, disconnect, getFreshAccessToken, safeDecrypt, fetchAthleteId</terms>
+        <annotation>Класс StravaAccountsService реализует ответственность модуля apps/api/src/integrations/strava/strava-accounts.service.ts.</annotation>
+        <apps_api_src_integrations_strava_strava_accounts_service_ts_StravaAccountsService_constructor_METHOD TYPE="IS_METHOD_OF_CLASS" NAME="constructor">
+          <keywords>strava, method, Service</keywords>
+          <terms>constructor</terms>
+          <annotation>constructor method of class StravaAccountsService.</annotation>
+        </apps_api_src_integrations_strava_strava_accounts_service_ts_StravaAccountsService_constructor_METHOD>
+        <apps_api_src_integrations_strava_strava_accounts_service_ts_StravaAccountsService_upsertFromTokenResponse_METHOD TYPE="IS_METHOD_OF_CLASS" NAME="upsertFromTokenResponse">
+          <keywords>strava, method, Service</keywords>
+          <terms>upsertFromTokenResponse</terms>
+          <annotation>upsertFromTokenResponse method of class StravaAccountsService.</annotation>
+        </apps_api_src_integrations_strava_strava_accounts_service_ts_StravaAccountsService_upsertFromTokenResponse_METHOD>
+        <apps_api_src_integrations_strava_strava_accounts_service_ts_StravaAccountsService_findActive_METHOD TYPE="IS_METHOD_OF_CLASS" NAME="findActive">
+          <keywords>strava, method, Service</keywords>
+          <terms>findActive</terms>
+          <annotation>findActive method of class StravaAccountsService.</annotation>
+        </apps_api_src_integrations_strava_strava_accounts_service_ts_StravaAccountsService_findActive_METHOD>
+        <apps_api_src_integrations_strava_strava_accounts_service_ts_StravaAccountsService_disconnect_METHOD TYPE="IS_METHOD_OF_CLASS" NAME="disconnect">
+          <keywords>strava, method, Service</keywords>
+          <terms>disconnect</terms>
+          <annotation>disconnect method of class StravaAccountsService.</annotation>
+        </apps_api_src_integrations_strava_strava_accounts_service_ts_StravaAccountsService_disconnect_METHOD>
+        <apps_api_src_integrations_strava_strava_accounts_service_ts_StravaAccountsService_getFreshAccessToken_METHOD TYPE="IS_METHOD_OF_CLASS" NAME="getFreshAccessToken">
+          <keywords>strava, method, Service</keywords>
+          <terms>getFreshAccessToken</terms>
+          <annotation>getFreshAccessToken method of class StravaAccountsService.</annotation>
+        </apps_api_src_integrations_strava_strava_accounts_service_ts_StravaAccountsService_getFreshAccessToken_METHOD>
+        <apps_api_src_integrations_strava_strava_accounts_service_ts_StravaAccountsService_safeDecrypt_METHOD TYPE="IS_METHOD_OF_CLASS" NAME="safeDecrypt">
+          <keywords>strava, method, Service</keywords>
+          <terms>safeDecrypt</terms>
+          <annotation>safeDecrypt method of class StravaAccountsService.</annotation>
+        </apps_api_src_integrations_strava_strava_accounts_service_ts_StravaAccountsService_safeDecrypt_METHOD>
+        <apps_api_src_integrations_strava_strava_accounts_service_ts_StravaAccountsService_fetchAthleteId_METHOD TYPE="IS_METHOD_OF_CLASS" NAME="fetchAthleteId">
+          <keywords>strava, method, Service</keywords>
+          <terms>fetchAthleteId</terms>
+          <annotation>fetchAthleteId method of class StravaAccountsService.</annotation>
+        </apps_api_src_integrations_strava_strava_accounts_service_ts_StravaAccountsService_fetchAthleteId_METHOD>
+      </apps_api_src_integrations_strava_strava_accounts_service_ts_StravaAccountsService_CLASS>
+      <CrossLinks>
+        <Link TARGET="apps_api_src_integrations_strava_types_ts" TYPE="USES_MODULE" />
+      </CrossLinks>
+    </apps_api_src_integrations_strava_strava_accounts_service_ts>
+    <apps_api_src_integrations_strava_strava_activities_service_ts TYPE="SERVICE_MODULE" FILE="apps/api/src/integrations/strava/strava-activities.service.ts">
+      <keywords>strava, Service, CITYRNNG</keywords>
+      <terms>StravaActivitiesService, ListActivitiesOptions</terms>
+      <annotation>Реализует бизнес-логику и координирует операции домена strava.</annotation>
+      <apps_api_src_integrations_strava_strava_activities_service_ts_StravaActivitiesService_CLASS TYPE="IS_CLASS_OF_MODULE" NAME="StravaActivitiesService">
+        <keywords>strava, class, Service</keywords>
+        <terms>constructor, listForUser</terms>
+        <annotation>Класс StravaActivitiesService реализует ответственность модуля apps/api/src/integrations/strava/strava-activities.service.ts.</annotation>
+        <apps_api_src_integrations_strava_strava_activities_service_ts_StravaActivitiesService_constructor_METHOD TYPE="IS_METHOD_OF_CLASS" NAME="constructor">
+          <keywords>strava, method, Service</keywords>
+          <terms>constructor</terms>
+          <annotation>constructor method of class StravaActivitiesService.</annotation>
+        </apps_api_src_integrations_strava_strava_activities_service_ts_StravaActivitiesService_constructor_METHOD>
+        <apps_api_src_integrations_strava_strava_activities_service_ts_StravaActivitiesService_listForUser_METHOD TYPE="IS_METHOD_OF_CLASS" NAME="listForUser">
+          <keywords>strava, method, Service</keywords>
+          <terms>listForUser</terms>
+          <annotation>listForUser method of class StravaActivitiesService.</annotation>
+        </apps_api_src_integrations_strava_strava_activities_service_ts_StravaActivitiesService_listForUser_METHOD>
+      </apps_api_src_integrations_strava_strava_activities_service_ts_StravaActivitiesService_CLASS>
+      <CrossLinks>
+        <Link TARGET="apps_api_src_integrations_strava_types_ts" TYPE="USES_MODULE" />
+      </CrossLinks>
+    </apps_api_src_integrations_strava_strava_activities_service_ts>
+    <apps_api_src_integrations_strava_strava_api_client_ts TYPE="CLIENT_MODULE" FILE="apps/api/src/integrations/strava/strava-api.client.ts">
+      <keywords>strava, Client, CITYRNNG</keywords>
+      <terms>StravaApiClient, safeText, TokenExchangeParams, TokenRefreshParams, ListActivitiesParams, STRAVA_BASE, STRAVA_OAUTH_BASE, USER_AGENT</terms>
+      <annotation>Инкапсулирует взаимодействие с внешним API домена strava.</annotation>
+      <apps_api_src_integrations_strava_strava_api_client_ts_StravaApiClient_CLASS TYPE="IS_CLASS_OF_MODULE" NAME="StravaApiClient">
+        <keywords>strava, class, Client</keywords>
+        <terms>constructor, exchangeCode, refreshToken, deauthorize, getAthlete, listActivities, postForm, getJson</terms>
+        <annotation>Класс StravaApiClient реализует ответственность модуля apps/api/src/integrations/strava/strava-api.client.ts.</annotation>
+        <apps_api_src_integrations_strava_strava_api_client_ts_StravaApiClient_constructor_METHOD TYPE="IS_METHOD_OF_CLASS" NAME="constructor">
+          <keywords>strava, method, Client</keywords>
+          <terms>constructor</terms>
+          <annotation>constructor method of class StravaApiClient.</annotation>
+        </apps_api_src_integrations_strava_strava_api_client_ts_StravaApiClient_constructor_METHOD>
+        <apps_api_src_integrations_strava_strava_api_client_ts_StravaApiClient_exchangeCode_METHOD TYPE="IS_METHOD_OF_CLASS" NAME="exchangeCode">
+          <keywords>strava, method, Client</keywords>
+          <terms>exchangeCode</terms>
+          <annotation>exchangeCode method of class StravaApiClient.</annotation>
+        </apps_api_src_integrations_strava_strava_api_client_ts_StravaApiClient_exchangeCode_METHOD>
+        <apps_api_src_integrations_strava_strava_api_client_ts_StravaApiClient_refreshToken_METHOD TYPE="IS_METHOD_OF_CLASS" NAME="refreshToken">
+          <keywords>strava, method, Client</keywords>
+          <terms>refreshToken</terms>
+          <annotation>refreshToken method of class StravaApiClient.</annotation>
+        </apps_api_src_integrations_strava_strava_api_client_ts_StravaApiClient_refreshToken_METHOD>
+        <apps_api_src_integrations_strava_strava_api_client_ts_StravaApiClient_deauthorize_METHOD TYPE="IS_METHOD_OF_CLASS" NAME="deauthorize">
+          <keywords>strava, method, Client</keywords>
+          <terms>deauthorize</terms>
+          <annotation>deauthorize method of class StravaApiClient.</annotation>
+        </apps_api_src_integrations_strava_strava_api_client_ts_StravaApiClient_deauthorize_METHOD>
+        <apps_api_src_integrations_strava_strava_api_client_ts_StravaApiClient_getAthlete_METHOD TYPE="IS_METHOD_OF_CLASS" NAME="getAthlete">
+          <keywords>strava, method, Client</keywords>
+          <terms>getAthlete</terms>
+          <annotation>getAthlete method of class StravaApiClient.</annotation>
+        </apps_api_src_integrations_strava_strava_api_client_ts_StravaApiClient_getAthlete_METHOD>
+        <apps_api_src_integrations_strava_strava_api_client_ts_StravaApiClient_listActivities_METHOD TYPE="IS_METHOD_OF_CLASS" NAME="listActivities">
+          <keywords>strava, method, Client</keywords>
+          <terms>listActivities</terms>
+          <annotation>listActivities method of class StravaApiClient.</annotation>
+        </apps_api_src_integrations_strava_strava_api_client_ts_StravaApiClient_listActivities_METHOD>
+        <apps_api_src_integrations_strava_strava_api_client_ts_StravaApiClient_postForm_METHOD TYPE="IS_METHOD_OF_CLASS" NAME="postForm">
+          <keywords>strava, method, Client</keywords>
+          <terms>postForm</terms>
+          <annotation>postForm method of class StravaApiClient.</annotation>
+        </apps_api_src_integrations_strava_strava_api_client_ts_StravaApiClient_postForm_METHOD>
+        <apps_api_src_integrations_strava_strava_api_client_ts_StravaApiClient_getJson_METHOD TYPE="IS_METHOD_OF_CLASS" NAME="getJson">
+          <keywords>strava, method, Client</keywords>
+          <terms>getJson</terms>
+          <annotation>getJson method of class StravaApiClient.</annotation>
+        </apps_api_src_integrations_strava_strava_api_client_ts_StravaApiClient_getJson_METHOD>
+      </apps_api_src_integrations_strava_strava_api_client_ts_StravaApiClient_CLASS>
+      <apps_api_src_integrations_strava_strava_api_client_ts_safeText_FUNC TYPE="IS_FUNCTION_OF_MODULE" NAME="safeText">
+        <keywords>strava, function, Client</keywords>
+        <terms>safeText</terms>
+        <annotation>Function safeText of module apps/api/src/integrations/strava/strava-api.client.ts.</annotation>
+      </apps_api_src_integrations_strava_strava_api_client_ts_safeText_FUNC>
+      <CrossLinks>
+        <Link TARGET="apps_api_src_integrations_strava_types_ts" TYPE="USES_MODULE" />
+      </CrossLinks>
+    </apps_api_src_integrations_strava_strava_api_client_ts>
+    <apps_api_src_integrations_strava_strava_ingestion_service_ts TYPE="SERVICE_MODULE" FILE="apps/api/src/integrations/strava/strava-ingestion.service.ts">
+      <keywords>strava, Service, CITYRNNG</keywords>
+      <terms>StravaIngestionService, IngestOptions, IngestSummary</terms>
+      <annotation>Реализует бизнес-логику и координирует операции домена strava.</annotation>
+      <apps_api_src_integrations_strava_strava_ingestion_service_ts_StravaIngestionService_CLASS TYPE="IS_CLASS_OF_MODULE" NAME="StravaIngestionService">
+        <keywords>strava, class, Service</keywords>
+        <terms>constructor, ingestForUser, toRow</terms>
+        <annotation>Класс StravaIngestionService реализует ответственность модуля apps/api/src/integrations/strava/strava-ingestion.service.ts.</annotation>
+        <apps_api_src_integrations_strava_strava_ingestion_service_ts_StravaIngestionService_constructor_METHOD TYPE="IS_METHOD_OF_CLASS" NAME="constructor">
+          <keywords>strava, method, Service</keywords>
+          <terms>constructor</terms>
+          <annotation>constructor method of class StravaIngestionService.</annotation>
+        </apps_api_src_integrations_strava_strava_ingestion_service_ts_StravaIngestionService_constructor_METHOD>
+        <apps_api_src_integrations_strava_strava_ingestion_service_ts_StravaIngestionService_ingestForUser_METHOD TYPE="IS_METHOD_OF_CLASS" NAME="ingestForUser">
+          <keywords>strava, method, Service</keywords>
+          <terms>ingestForUser</terms>
+          <annotation>ingestForUser method of class StravaIngestionService.</annotation>
+        </apps_api_src_integrations_strava_strava_ingestion_service_ts_StravaIngestionService_ingestForUser_METHOD>
+        <apps_api_src_integrations_strava_strava_ingestion_service_ts_StravaIngestionService_toRow_METHOD TYPE="IS_METHOD_OF_CLASS" NAME="toRow">
+          <keywords>strava, method, Service</keywords>
+          <terms>toRow</terms>
+          <annotation>toRow method of class StravaIngestionService.</annotation>
+        </apps_api_src_integrations_strava_strava_ingestion_service_ts_StravaIngestionService_toRow_METHOD>
+      </apps_api_src_integrations_strava_strava_ingestion_service_ts_StravaIngestionService_CLASS>
+      <CrossLinks>
+        <Link TARGET="apps_api_src_integrations_strava_types_ts" TYPE="USES_MODULE" />
+      </CrossLinks>
+    </apps_api_src_integrations_strava_strava_ingestion_service_ts>
+    <apps_api_src_integrations_strava_strava_oauth_service_ts TYPE="SERVICE_MODULE" FILE="apps/api/src/integrations/strava/strava-oauth.service.ts">
+      <keywords>strava, Service, CITYRNNG</keywords>
+      <terms>StravaOAuthService, STATE_TTL</terms>
+      <annotation>Реализует бизнес-логику и координирует операции домена strava.</annotation>
+      <apps_api_src_integrations_strava_strava_oauth_service_ts_StravaOAuthService_CLASS TYPE="IS_CLASS_OF_MODULE" NAME="StravaOAuthService">
+        <keywords>strava, class, Service</keywords>
+        <terms>constructor, buildAuthorizeUrl, verifyState, exchangeCode, refreshToken, provider, stateSecret</terms>
+        <annotation>Класс StravaOAuthService реализует ответственность модуля apps/api/src/integrations/strava/strava-oauth.service.ts.</annotation>
+        <apps_api_src_integrations_strava_strava_oauth_service_ts_StravaOAuthService_constructor_METHOD TYPE="IS_METHOD_OF_CLASS" NAME="constructor">
+          <keywords>strava, method, Service</keywords>
+          <terms>constructor</terms>
+          <annotation>constructor method of class StravaOAuthService.</annotation>
+        </apps_api_src_integrations_strava_strava_oauth_service_ts_StravaOAuthService_constructor_METHOD>
+        <apps_api_src_integrations_strava_strava_oauth_service_ts_StravaOAuthService_buildAuthorizeUrl_METHOD TYPE="IS_METHOD_OF_CLASS" NAME="buildAuthorizeUrl">
+          <keywords>strava, method, Service</keywords>
+          <terms>buildAuthorizeUrl</terms>
+          <annotation>buildAuthorizeUrl method of class StravaOAuthService.</annotation>
+        </apps_api_src_integrations_strava_strava_oauth_service_ts_StravaOAuthService_buildAuthorizeUrl_METHOD>
+        <apps_api_src_integrations_strava_strava_oauth_service_ts_StravaOAuthService_verifyState_METHOD TYPE="IS_METHOD_OF_CLASS" NAME="verifyState">
+          <keywords>strava, method, Service</keywords>
+          <terms>verifyState</terms>
+          <annotation>verifyState method of class StravaOAuthService.</annotation>
+        </apps_api_src_integrations_strava_strava_oauth_service_ts_StravaOAuthService_verifyState_METHOD>
+        <apps_api_src_integrations_strava_strava_oauth_service_ts_StravaOAuthService_exchangeCode_METHOD TYPE="IS_METHOD_OF_CLASS" NAME="exchangeCode">
+          <keywords>strava, method, Service</keywords>
+          <terms>exchangeCode</terms>
+          <annotation>exchangeCode method of class StravaOAuthService.</annotation>
+        </apps_api_src_integrations_strava_strava_oauth_service_ts_StravaOAuthService_exchangeCode_METHOD>
+        <apps_api_src_integrations_strava_strava_oauth_service_ts_StravaOAuthService_refreshToken_METHOD TYPE="IS_METHOD_OF_CLASS" NAME="refreshToken">
+          <keywords>strava, method, Service</keywords>
+          <terms>refreshToken</terms>
+          <annotation>refreshToken method of class StravaOAuthService.</annotation>
+        </apps_api_src_integrations_strava_strava_oauth_service_ts_StravaOAuthService_refreshToken_METHOD>
+        <apps_api_src_integrations_strava_strava_oauth_service_ts_StravaOAuthService_provider_METHOD TYPE="IS_METHOD_OF_CLASS" NAME="provider">
+          <keywords>strava, method, Service</keywords>
+          <terms>provider</terms>
+          <annotation>provider method of class StravaOAuthService.</annotation>
+        </apps_api_src_integrations_strava_strava_oauth_service_ts_StravaOAuthService_provider_METHOD>
+        <apps_api_src_integrations_strava_strava_oauth_service_ts_StravaOAuthService_stateSecret_METHOD TYPE="IS_METHOD_OF_CLASS" NAME="stateSecret">
+          <keywords>strava, method, Service</keywords>
+          <terms>stateSecret</terms>
+          <annotation>stateSecret method of class StravaOAuthService.</annotation>
+        </apps_api_src_integrations_strava_strava_oauth_service_ts_StravaOAuthService_stateSecret_METHOD>
+      </apps_api_src_integrations_strava_strava_oauth_service_ts_StravaOAuthService_CLASS>
+      <CrossLinks>
+        <Link TARGET="apps_api_src_integrations_strava_types_ts" TYPE="USES_MODULE" />
+      </CrossLinks>
+    </apps_api_src_integrations_strava_strava_oauth_service_ts>
+    <apps_api_src_integrations_strava_strava_controller_ts TYPE="CONTROLLER_MODULE" FILE="apps/api/src/integrations/strava/strava.controller.ts">
+      <keywords>strava, Controller, CITYRNNG</keywords>
+      <terms>StravaController</terms>
+      <annotation>Определяет HTTP-контроллер и маршруты домена strava.</annotation>
+      <apps_api_src_integrations_strava_strava_controller_ts_StravaController_CLASS TYPE="IS_CLASS_OF_MODULE" NAME="StravaController">
+        <keywords>strava, class, Controller</keywords>
+        <terms>constructor, connect, callback, status, disconnect</terms>
+        <annotation>Класс StravaController реализует ответственность модуля apps/api/src/integrations/strava/strava.controller.ts.</annotation>
+        <apps_api_src_integrations_strava_strava_controller_ts_StravaController_constructor_METHOD TYPE="IS_METHOD_OF_CLASS" NAME="constructor">
+          <keywords>strava, method, Controller</keywords>
+          <terms>constructor</terms>
+          <annotation>constructor method of class StravaController.</annotation>
+        </apps_api_src_integrations_strava_strava_controller_ts_StravaController_constructor_METHOD>
+        <apps_api_src_integrations_strava_strava_controller_ts_StravaController_connect_METHOD TYPE="IS_METHOD_OF_CLASS" NAME="connect">
+          <keywords>strava, method, Controller</keywords>
+          <terms>connect</terms>
+          <annotation>connect method of class StravaController.</annotation>
+        </apps_api_src_integrations_strava_strava_controller_ts_StravaController_connect_METHOD>
+        <apps_api_src_integrations_strava_strava_controller_ts_StravaController_callback_METHOD TYPE="IS_METHOD_OF_CLASS" NAME="callback">
+          <keywords>strava, method, Controller</keywords>
+          <terms>callback</terms>
+          <annotation>callback method of class StravaController.</annotation>
+        </apps_api_src_integrations_strava_strava_controller_ts_StravaController_callback_METHOD>
+        <apps_api_src_integrations_strava_strava_controller_ts_StravaController_status_METHOD TYPE="IS_METHOD_OF_CLASS" NAME="status">
+          <keywords>strava, method, Controller</keywords>
+          <terms>status</terms>
+          <annotation>status method of class StravaController.</annotation>
+        </apps_api_src_integrations_strava_strava_controller_ts_StravaController_status_METHOD>
+        <apps_api_src_integrations_strava_strava_controller_ts_StravaController_disconnect_METHOD TYPE="IS_METHOD_OF_CLASS" NAME="disconnect">
+          <keywords>strava, method, Controller</keywords>
+          <terms>disconnect</terms>
+          <annotation>disconnect method of class StravaController.</annotation>
+        </apps_api_src_integrations_strava_strava_controller_ts_StravaController_disconnect_METHOD>
+      </apps_api_src_integrations_strava_strava_controller_ts_StravaController_CLASS>
+      <CrossLinks>
+        <Link TARGET="apps_api_src_auth_types_ts" TYPE="USES_MODULE" />
+      </CrossLinks>
+    </apps_api_src_integrations_strava_strava_controller_ts>
+    <apps_api_src_integrations_strava_strava_module_ts TYPE="MODULE_MODULE" FILE="apps/api/src/integrations/strava/strava.module.ts">
+      <keywords>strava, Module, CITYRNNG</keywords>
+      <terms>StravaModule</terms>
+      <annotation>Связывает провайдеры и экспортирует зависимости домена strava.</annotation>
+      <apps_api_src_integrations_strava_strava_module_ts_StravaModule_CLASS TYPE="IS_CLASS_OF_MODULE" NAME="StravaModule">
+        <keywords>strava, class, Module</keywords>
+        <terms></terms>
+        <annotation>Класс StravaModule реализует ответственность модуля apps/api/src/integrations/strava/strava.module.ts.</annotation>
+      </apps_api_src_integrations_strava_strava_module_ts_StravaModule_CLASS>
+    </apps_api_src_integrations_strava_strava_module_ts>
+    <apps_api_src_integrations_strava_types_ts TYPE="TYPES_MODULE" FILE="apps/api/src/integrations/strava/types.ts">
+      <keywords>strava, Types, CITYRNNG</keywords>
+      <terms>StravaTokenResponse, StravaAthlete, StravaActivity, StateClaims</terms>
+      <annotation>Содержит общие типы и контракты домена strava.</annotation>
+    </apps_api_src_integrations_strava_types_ts>
+    <apps_api_src_locations_admin_locations_controller_ts TYPE="CONTROLLER_MODULE" FILE="apps/api/src/locations/admin-locations.controller.ts">
+      <keywords>locations, Controller, CITYRNNG</keywords>
+      <terms>AdminLocationsController</terms>
+      <annotation>Определяет HTTP-контроллер и маршруты домена locations.</annotation>
+      <apps_api_src_locations_admin_locations_controller_ts_AdminLocationsController_CLASS TYPE="IS_CLASS_OF_MODULE" NAME="AdminLocationsController">
+        <keywords>locations, class, Controller</keywords>
+        <terms>constructor, list, create, update</terms>
+        <annotation>Класс AdminLocationsController реализует ответственность модуля apps/api/src/locations/admin-locations.controller.ts.</annotation>
+        <apps_api_src_locations_admin_locations_controller_ts_AdminLocationsController_constructor_METHOD TYPE="IS_METHOD_OF_CLASS" NAME="constructor">
+          <keywords>locations, method, Controller</keywords>
+          <terms>constructor</terms>
+          <annotation>constructor method of class AdminLocationsController.</annotation>
+        </apps_api_src_locations_admin_locations_controller_ts_AdminLocationsController_constructor_METHOD>
+        <apps_api_src_locations_admin_locations_controller_ts_AdminLocationsController_list_METHOD TYPE="IS_METHOD_OF_CLASS" NAME="list">
+          <keywords>locations, method, Controller</keywords>
+          <terms>list</terms>
+          <annotation>list method of class AdminLocationsController.</annotation>
+        </apps_api_src_locations_admin_locations_controller_ts_AdminLocationsController_list_METHOD>
+        <apps_api_src_locations_admin_locations_controller_ts_AdminLocationsController_create_METHOD TYPE="IS_METHOD_OF_CLASS" NAME="create">
+          <keywords>locations, method, Controller</keywords>
+          <terms>create</terms>
+          <annotation>create method of class AdminLocationsController.</annotation>
+        </apps_api_src_locations_admin_locations_controller_ts_AdminLocationsController_create_METHOD>
+        <apps_api_src_locations_admin_locations_controller_ts_AdminLocationsController_update_METHOD TYPE="IS_METHOD_OF_CLASS" NAME="update">
+          <keywords>locations, method, Controller</keywords>
+          <terms>update</terms>
+          <annotation>update method of class AdminLocationsController.</annotation>
+        </apps_api_src_locations_admin_locations_controller_ts_AdminLocationsController_update_METHOD>
+      </apps_api_src_locations_admin_locations_controller_ts_AdminLocationsController_CLASS>
+      <CrossLinks>
+        <Link TARGET="apps_api_src_auth_types_ts" TYPE="USES_MODULE" />
+      </CrossLinks>
+    </apps_api_src_locations_admin_locations_controller_ts>
+    <apps_api_src_locations_dto_create_location_dto_ts TYPE="DTO_MODULE" FILE="apps/api/src/locations/dto/create-location.dto.ts">
+      <keywords>locations, DTO, CITYRNNG</keywords>
+      <terms>CreateLocationDto, SLUG_REGEX</terms>
+      <annotation>Описывает контракт входных и выходных данных домена locations.</annotation>
+      <apps_api_src_locations_dto_create_location_dto_ts_CreateLocationDto_CLASS TYPE="IS_CLASS_OF_MODULE" NAME="CreateLocationDto">
+        <keywords>locations, class, DTO</keywords>
+        <terms></terms>
+        <annotation>Класс CreateLocationDto реализует ответственность модуля apps/api/src/locations/dto/create-location.dto.ts.</annotation>
+      </apps_api_src_locations_dto_create_location_dto_ts_CreateLocationDto_CLASS>
+    </apps_api_src_locations_dto_create_location_dto_ts>
+    <apps_api_src_locations_dto_list_locations_query_ts TYPE="DTO_MODULE" FILE="apps/api/src/locations/dto/list-locations.query.ts">
+      <keywords>locations, DTO, CITYRNNG</keywords>
+      <terms>ListLocationsQuery</terms>
+      <annotation>Описывает контракт входных и выходных данных домена locations.</annotation>
+      <apps_api_src_locations_dto_list_locations_query_ts_ListLocationsQuery_CLASS TYPE="IS_CLASS_OF_MODULE" NAME="ListLocationsQuery">
+        <keywords>locations, class, DTO</keywords>
+        <terms></terms>
+        <annotation>Класс ListLocationsQuery реализует ответственность модуля apps/api/src/locations/dto/list-locations.query.ts.</annotation>
+      </apps_api_src_locations_dto_list_locations_query_ts_ListLocationsQuery_CLASS>
+    </apps_api_src_locations_dto_list_locations_query_ts>
+    <apps_api_src_locations_dto_update_location_dto_ts TYPE="DTO_MODULE" FILE="apps/api/src/locations/dto/update-location.dto.ts">
+      <keywords>locations, DTO, CITYRNNG</keywords>
+      <terms>UpdateLocationDto, SLUG_REGEX</terms>
+      <annotation>Описывает контракт входных и выходных данных домена locations.</annotation>
+      <apps_api_src_locations_dto_update_location_dto_ts_UpdateLocationDto_CLASS TYPE="IS_CLASS_OF_MODULE" NAME="UpdateLocationDto">
+        <keywords>locations, class, DTO</keywords>
+        <terms></terms>
+        <annotation>Класс UpdateLocationDto реализует ответственность модуля apps/api/src/locations/dto/update-location.dto.ts.</annotation>
+      </apps_api_src_locations_dto_update_location_dto_ts_UpdateLocationDto_CLASS>
+    </apps_api_src_locations_dto_update_location_dto_ts>
+    <apps_api_src_locations_locations_module_ts TYPE="MODULE_MODULE" FILE="apps/api/src/locations/locations.module.ts">
+      <keywords>locations, Module, CITYRNNG</keywords>
+      <terms>LocationsModule</terms>
+      <annotation>Связывает провайдеры и экспортирует зависимости домена locations.</annotation>
+      <apps_api_src_locations_locations_module_ts_LocationsModule_CLASS TYPE="IS_CLASS_OF_MODULE" NAME="LocationsModule">
+        <keywords>locations, class, Module</keywords>
+        <terms></terms>
+        <annotation>Класс LocationsModule реализует ответственность модуля apps/api/src/locations/locations.module.ts.</annotation>
+      </apps_api_src_locations_locations_module_ts_LocationsModule_CLASS>
+    </apps_api_src_locations_locations_module_ts>
+    <apps_api_src_locations_locations_service_ts TYPE="SERVICE_MODULE" FILE="apps/api/src/locations/locations.service.ts">
+      <keywords>locations, Service, CITYRNNG</keywords>
+      <terms>LocationsService, isUniqueViolation</terms>
+      <annotation>Реализует бизнес-логику и координирует операции домена locations.</annotation>
+      <apps_api_src_locations_locations_service_ts_LocationsService_CLASS TYPE="IS_CLASS_OF_MODULE" NAME="LocationsService">
+        <keywords>locations, class, Service</keywords>
+        <terms>constructor, list, create, update</terms>
+        <annotation>Класс LocationsService реализует ответственность модуля apps/api/src/locations/locations.service.ts.</annotation>
+        <apps_api_src_locations_locations_service_ts_LocationsService_constructor_METHOD TYPE="IS_METHOD_OF_CLASS" NAME="constructor">
+          <keywords>locations, method, Service</keywords>
+          <terms>constructor</terms>
+          <annotation>constructor method of class LocationsService.</annotation>
+        </apps_api_src_locations_locations_service_ts_LocationsService_constructor_METHOD>
+        <apps_api_src_locations_locations_service_ts_LocationsService_list_METHOD TYPE="IS_METHOD_OF_CLASS" NAME="list">
+          <keywords>locations, method, Service</keywords>
+          <terms>list</terms>
+          <annotation>list method of class LocationsService.</annotation>
+        </apps_api_src_locations_locations_service_ts_LocationsService_list_METHOD>
+        <apps_api_src_locations_locations_service_ts_LocationsService_create_METHOD TYPE="IS_METHOD_OF_CLASS" NAME="create">
+          <keywords>locations, method, Service</keywords>
+          <terms>create</terms>
+          <annotation>create method of class LocationsService.</annotation>
+        </apps_api_src_locations_locations_service_ts_LocationsService_create_METHOD>
+        <apps_api_src_locations_locations_service_ts_LocationsService_update_METHOD TYPE="IS_METHOD_OF_CLASS" NAME="update">
+          <keywords>locations, method, Service</keywords>
+          <terms>update</terms>
+          <annotation>update method of class LocationsService.</annotation>
+        </apps_api_src_locations_locations_service_ts_LocationsService_update_METHOD>
+      </apps_api_src_locations_locations_service_ts_LocationsService_CLASS>
+      <apps_api_src_locations_locations_service_ts_isUniqueViolation_FUNC TYPE="IS_FUNCTION_OF_MODULE" NAME="isUniqueViolation">
+        <keywords>locations, function, Service</keywords>
+        <terms>isUniqueViolation</terms>
+        <annotation>Function isUniqueViolation of module apps/api/src/locations/locations.service.ts.</annotation>
+      </apps_api_src_locations_locations_service_ts_isUniqueViolation_FUNC>
+    </apps_api_src_locations_locations_service_ts>
+    <apps_api_src_main_ts TYPE="ENTRYPOINT_MODULE" FILE="apps/api/src/main.ts">
+      <keywords>main, EntryPoint, CITYRNNG</keywords>
+      <terms>bootstrap</terms>
+      <annotation>Инициализирует runtime-конфигурацию приложения и запускает API.</annotation>
+      <apps_api_src_main_ts_bootstrap_FUNC TYPE="IS_FUNCTION_OF_MODULE" NAME="bootstrap">
+        <keywords>main, function, EntryPoint</keywords>
+        <terms>bootstrap</terms>
+        <annotation>Function bootstrap of module apps/api/src/main.ts.</annotation>
+      </apps_api_src_main_ts_bootstrap_FUNC>
+    </apps_api_src_main_ts>
+    <apps_api_src_me_me_controller_ts TYPE="CONTROLLER_MODULE" FILE="apps/api/src/me/me.controller.ts">
+      <keywords>me, Controller, CITYRNNG</keywords>
+      <terms>MeController</terms>
+      <annotation>Определяет HTTP-контроллер и маршруты домена me.</annotation>
+      <apps_api_src_me_me_controller_ts_MeController_CLASS TYPE="IS_CLASS_OF_MODULE" NAME="MeController">
+        <keywords>me, class, Controller</keywords>
+        <terms>constructor, me</terms>
+        <annotation>Класс MeController реализует ответственность модуля apps/api/src/me/me.controller.ts.</annotation>
+        <apps_api_src_me_me_controller_ts_MeController_constructor_METHOD TYPE="IS_METHOD_OF_CLASS" NAME="constructor">
+          <keywords>me, method, Controller</keywords>
+          <terms>constructor</terms>
+          <annotation>constructor method of class MeController.</annotation>
+        </apps_api_src_me_me_controller_ts_MeController_constructor_METHOD>
+        <apps_api_src_me_me_controller_ts_MeController_me_METHOD TYPE="IS_METHOD_OF_CLASS" NAME="me">
+          <keywords>me, method, Controller</keywords>
+          <terms>me</terms>
+          <annotation>me method of class MeController.</annotation>
+        </apps_api_src_me_me_controller_ts_MeController_me_METHOD>
+      </apps_api_src_me_me_controller_ts_MeController_CLASS>
+      <CrossLinks>
+        <Link TARGET="apps_api_src_auth_types_ts" TYPE="USES_MODULE" />
+      </CrossLinks>
+    </apps_api_src_me_me_controller_ts>
+    <apps_api_src_me_me_module_ts TYPE="MODULE_MODULE" FILE="apps/api/src/me/me.module.ts">
+      <keywords>me, Module, CITYRNNG</keywords>
+      <terms>MeModule</terms>
+      <annotation>Связывает провайдеры и экспортирует зависимости домена me.</annotation>
+      <apps_api_src_me_me_module_ts_MeModule_CLASS TYPE="IS_CLASS_OF_MODULE" NAME="MeModule">
+        <keywords>me, class, Module</keywords>
+        <terms></terms>
+        <annotation>Класс MeModule реализует ответственность модуля apps/api/src/me/me.module.ts.</annotation>
+      </apps_api_src_me_me_module_ts_MeModule_CLASS>
+    </apps_api_src_me_me_module_ts>
+    <apps_api_src_points_admin_points_controller_ts TYPE="CONTROLLER_MODULE" FILE="apps/api/src/points/admin-points.controller.ts">
+      <keywords>points, Controller, CITYRNNG</keywords>
+      <terms>AdminPointsController</terms>
+      <annotation>Определяет HTTP-контроллер и маршруты домена points.</annotation>
+      <apps_api_src_points_admin_points_controller_ts_AdminPointsController_CLASS TYPE="IS_CLASS_OF_MODULE" NAME="AdminPointsController">
+        <keywords>points, class, Controller</keywords>
+        <terms>constructor, adjust</terms>
+        <annotation>Класс AdminPointsController реализует ответственность модуля apps/api/src/points/admin-points.controller.ts.</annotation>
+        <apps_api_src_points_admin_points_controller_ts_AdminPointsController_constructor_METHOD TYPE="IS_METHOD_OF_CLASS" NAME="constructor">
+          <keywords>points, method, Controller</keywords>
+          <terms>constructor</terms>
+          <annotation>constructor method of class AdminPointsController.</annotation>
+        </apps_api_src_points_admin_points_controller_ts_AdminPointsController_constructor_METHOD>
+        <apps_api_src_points_admin_points_controller_ts_AdminPointsController_adjust_METHOD TYPE="IS_METHOD_OF_CLASS" NAME="adjust">
+          <keywords>points, method, Controller</keywords>
+          <terms>adjust</terms>
+          <annotation>adjust method of class AdminPointsController.</annotation>
+        </apps_api_src_points_admin_points_controller_ts_AdminPointsController_adjust_METHOD>
+      </apps_api_src_points_admin_points_controller_ts_AdminPointsController_CLASS>
+      <CrossLinks>
+        <Link TARGET="apps_api_src_auth_types_ts" TYPE="USES_MODULE" />
+      </CrossLinks>
+    </apps_api_src_points_admin_points_controller_ts>
+    <apps_api_src_points_dto_adjust_points_dto_ts TYPE="DTO_MODULE" FILE="apps/api/src/points/dto/adjust-points.dto.ts">
+      <keywords>points, DTO, CITYRNNG</keywords>
+      <terms>AdjustPointsDto</terms>
+      <annotation>Описывает контракт входных и выходных данных домена points.</annotation>
+      <apps_api_src_points_dto_adjust_points_dto_ts_AdjustPointsDto_CLASS TYPE="IS_CLASS_OF_MODULE" NAME="AdjustPointsDto">
+        <keywords>points, class, DTO</keywords>
+        <terms></terms>
+        <annotation>Класс AdjustPointsDto реализует ответственность модуля apps/api/src/points/dto/adjust-points.dto.ts.</annotation>
+      </apps_api_src_points_dto_adjust_points_dto_ts_AdjustPointsDto_CLASS>
+    </apps_api_src_points_dto_adjust_points_dto_ts>
+    <apps_api_src_points_dto_list_history_query_ts TYPE="DTO_MODULE" FILE="apps/api/src/points/dto/list-history.query.ts">
+      <keywords>points, DTO, CITYRNNG</keywords>
+      <terms>ListHistoryQuery</terms>
+      <annotation>Описывает контракт входных и выходных данных домена points.</annotation>
+      <apps_api_src_points_dto_list_history_query_ts_ListHistoryQuery_CLASS TYPE="IS_CLASS_OF_MODULE" NAME="ListHistoryQuery">
+        <keywords>points, class, DTO</keywords>
+        <terms></terms>
+        <annotation>Класс ListHistoryQuery реализует ответственность модуля apps/api/src/points/dto/list-history.query.ts.</annotation>
+      </apps_api_src_points_dto_list_history_query_ts_ListHistoryQuery_CLASS>
+    </apps_api_src_points_dto_list_history_query_ts>
+    <apps_api_src_points_points_awards_service_ts TYPE="SERVICE_MODULE" FILE="apps/api/src/points/points-awards.service.ts">
+      <keywords>points, Service, CITYRNNG</keywords>
+      <terms>PointsAwardsService, reasonTypeForEvent</terms>
+      <annotation>Реализует бизнес-логику и координирует операции домена points.</annotation>
+      <apps_api_src_points_points_awards_service_ts_PointsAwardsService_CLASS TYPE="IS_CLASS_OF_MODULE" NAME="PointsAwardsService">
+        <keywords>points, class, Service</keywords>
+        <terms>constructor, awardSignupBonus, awardEventAttendance, amountForEvent</terms>
+        <annotation>Класс PointsAwardsService реализует ответственность модуля apps/api/src/points/points-awards.service.ts.</annotation>
+        <apps_api_src_points_points_awards_service_ts_PointsAwardsService_constructor_METHOD TYPE="IS_METHOD_OF_CLASS" NAME="constructor">
+          <keywords>points, method, Service</keywords>
+          <terms>constructor</terms>
+          <annotation>constructor method of class PointsAwardsService.</annotation>
+        </apps_api_src_points_points_awards_service_ts_PointsAwardsService_constructor_METHOD>
+        <apps_api_src_points_points_awards_service_ts_PointsAwardsService_awardSignupBonus_METHOD TYPE="IS_METHOD_OF_CLASS" NAME="awardSignupBonus">
+          <keywords>points, method, Service</keywords>
+          <terms>awardSignupBonus</terms>
+          <annotation>awardSignupBonus method of class PointsAwardsService.</annotation>
+        </apps_api_src_points_points_awards_service_ts_PointsAwardsService_awardSignupBonus_METHOD>
+        <apps_api_src_points_points_awards_service_ts_PointsAwardsService_awardEventAttendance_METHOD TYPE="IS_METHOD_OF_CLASS" NAME="awardEventAttendance">
+          <keywords>points, method, Service</keywords>
+          <terms>awardEventAttendance</terms>
+          <annotation>awardEventAttendance method of class PointsAwardsService.</annotation>
+        </apps_api_src_points_points_awards_service_ts_PointsAwardsService_awardEventAttendance_METHOD>
+        <apps_api_src_points_points_awards_service_ts_PointsAwardsService_amountForEvent_METHOD TYPE="IS_METHOD_OF_CLASS" NAME="amountForEvent">
+          <keywords>points, method, Service</keywords>
+          <terms>amountForEvent</terms>
+          <annotation>amountForEvent method of class PointsAwardsService.</annotation>
+        </apps_api_src_points_points_awards_service_ts_PointsAwardsService_amountForEvent_METHOD>
+      </apps_api_src_points_points_awards_service_ts_PointsAwardsService_CLASS>
+      <apps_api_src_points_points_awards_service_ts_reasonTypeForEvent_FUNC TYPE="IS_FUNCTION_OF_MODULE" NAME="reasonTypeForEvent">
+        <keywords>points, function, Service</keywords>
+        <terms>reasonTypeForEvent</terms>
+        <annotation>Function reasonTypeForEvent of module apps/api/src/points/points-awards.service.ts.</annotation>
+      </apps_api_src_points_points_awards_service_ts_reasonTypeForEvent_FUNC>
+    </apps_api_src_points_points_awards_service_ts>
+    <apps_api_src_points_points_controller_ts TYPE="CONTROLLER_MODULE" FILE="apps/api/src/points/points.controller.ts">
+      <keywords>points, Controller, CITYRNNG</keywords>
+      <terms>PointsController</terms>
+      <annotation>Определяет HTTP-контроллер и маршруты домена points.</annotation>
+      <apps_api_src_points_points_controller_ts_PointsController_CLASS TYPE="IS_CLASS_OF_MODULE" NAME="PointsController">
+        <keywords>points, class, Controller</keywords>
+        <terms>constructor, balance, history</terms>
+        <annotation>Класс PointsController реализует ответственность модуля apps/api/src/points/points.controller.ts.</annotation>
+        <apps_api_src_points_points_controller_ts_PointsController_constructor_METHOD TYPE="IS_METHOD_OF_CLASS" NAME="constructor">
+          <keywords>points, method, Controller</keywords>
+          <terms>constructor</terms>
+          <annotation>constructor method of class PointsController.</annotation>
+        </apps_api_src_points_points_controller_ts_PointsController_constructor_METHOD>
+        <apps_api_src_points_points_controller_ts_PointsController_balance_METHOD TYPE="IS_METHOD_OF_CLASS" NAME="balance">
+          <keywords>points, method, Controller</keywords>
+          <terms>balance</terms>
+          <annotation>balance method of class PointsController.</annotation>
+        </apps_api_src_points_points_controller_ts_PointsController_balance_METHOD>
+        <apps_api_src_points_points_controller_ts_PointsController_history_METHOD TYPE="IS_METHOD_OF_CLASS" NAME="history">
+          <keywords>points, method, Controller</keywords>
+          <terms>history</terms>
+          <annotation>history method of class PointsController.</annotation>
+        </apps_api_src_points_points_controller_ts_PointsController_history_METHOD>
+      </apps_api_src_points_points_controller_ts_PointsController_CLASS>
+      <CrossLinks>
+        <Link TARGET="apps_api_src_auth_types_ts" TYPE="USES_MODULE" />
+      </CrossLinks>
+    </apps_api_src_points_points_controller_ts>
+    <apps_api_src_points_points_module_ts TYPE="MODULE_MODULE" FILE="apps/api/src/points/points.module.ts">
+      <keywords>points, Module, CITYRNNG</keywords>
+      <terms>PointsModule</terms>
+      <annotation>Связывает провайдеры и экспортирует зависимости домена points.</annotation>
+      <apps_api_src_points_points_module_ts_PointsModule_CLASS TYPE="IS_CLASS_OF_MODULE" NAME="PointsModule">
+        <keywords>points, class, Module</keywords>
+        <terms></terms>
+        <annotation>Класс PointsModule реализует ответственность модуля apps/api/src/points/points.module.ts.</annotation>
+      </apps_api_src_points_points_module_ts_PointsModule_CLASS>
+    </apps_api_src_points_points_module_ts>
+    <apps_api_src_points_points_service_ts TYPE="SERVICE_MODULE" FILE="apps/api/src/points/points.service.ts">
+      <keywords>points, Service, CITYRNNG</keywords>
+      <terms>PointsService, uniqueTargetIncludes, PostParams, HistoryQuery</terms>
+      <annotation>Реализует бизнес-логику и координирует операции домена points.</annotation>
+      <apps_api_src_points_points_service_ts_PointsService_CLASS TYPE="IS_CLASS_OF_MODULE" NAME="PointsService">
+        <keywords>points, class, Service</keywords>
+        <terms>constructor, post, getBalance, listHistory</terms>
+        <annotation>Класс PointsService реализует ответственность модуля apps/api/src/points/points.service.ts.</annotation>
+        <apps_api_src_points_points_service_ts_PointsService_constructor_METHOD TYPE="IS_METHOD_OF_CLASS" NAME="constructor">
+          <keywords>points, method, Service</keywords>
+          <terms>constructor</terms>
+          <annotation>constructor method of class PointsService.</annotation>
+        </apps_api_src_points_points_service_ts_PointsService_constructor_METHOD>
+        <apps_api_src_points_points_service_ts_PointsService_post_METHOD TYPE="IS_METHOD_OF_CLASS" NAME="post">
+          <keywords>points, method, Service</keywords>
+          <terms>post</terms>
+          <annotation>post method of class PointsService.</annotation>
+        </apps_api_src_points_points_service_ts_PointsService_post_METHOD>
+        <apps_api_src_points_points_service_ts_PointsService_getBalance_METHOD TYPE="IS_METHOD_OF_CLASS" NAME="getBalance">
+          <keywords>points, method, Service</keywords>
+          <terms>getBalance</terms>
+          <annotation>getBalance method of class PointsService.</annotation>
+        </apps_api_src_points_points_service_ts_PointsService_getBalance_METHOD>
+        <apps_api_src_points_points_service_ts_PointsService_listHistory_METHOD TYPE="IS_METHOD_OF_CLASS" NAME="listHistory">
+          <keywords>points, method, Service</keywords>
+          <terms>listHistory</terms>
+          <annotation>listHistory method of class PointsService.</annotation>
+        </apps_api_src_points_points_service_ts_PointsService_listHistory_METHOD>
+      </apps_api_src_points_points_service_ts_PointsService_CLASS>
+      <apps_api_src_points_points_service_ts_uniqueTargetIncludes_FUNC TYPE="IS_FUNCTION_OF_MODULE" NAME="uniqueTargetIncludes">
+        <keywords>points, function, Service</keywords>
+        <terms>uniqueTargetIncludes</terms>
+        <annotation>Function uniqueTargetIncludes of module apps/api/src/points/points.service.ts.</annotation>
+      </apps_api_src_points_points_service_ts_uniqueTargetIncludes_FUNC>
+    </apps_api_src_points_points_service_ts>
+    <apps_api_src_prisma_prisma_module_ts TYPE="MODULE_MODULE" FILE="apps/api/src/prisma/prisma.module.ts">
+      <keywords>prisma, Module, CITYRNNG</keywords>
+      <terms>PrismaModule</terms>
+      <annotation>Связывает провайдеры и экспортирует зависимости домена prisma.</annotation>
+      <apps_api_src_prisma_prisma_module_ts_PrismaModule_CLASS TYPE="IS_CLASS_OF_MODULE" NAME="PrismaModule">
+        <keywords>prisma, class, Module</keywords>
+        <terms></terms>
+        <annotation>Класс PrismaModule реализует ответственность модуля apps/api/src/prisma/prisma.module.ts.</annotation>
+      </apps_api_src_prisma_prisma_module_ts_PrismaModule_CLASS>
+    </apps_api_src_prisma_prisma_module_ts>
+    <apps_api_src_prisma_prisma_service_ts TYPE="SERVICE_MODULE" FILE="apps/api/src/prisma/prisma.service.ts">
+      <keywords>prisma, Service, CITYRNNG</keywords>
+      <terms>PrismaService</terms>
+      <annotation>Реализует бизнес-логику и координирует операции домена prisma.</annotation>
+      <apps_api_src_prisma_prisma_service_ts_PrismaService_CLASS TYPE="IS_CLASS_OF_MODULE" NAME="PrismaService">
+        <keywords>prisma, class, Service</keywords>
+        <terms>onModuleDestroy</terms>
+        <annotation>Класс PrismaService реализует ответственность модуля apps/api/src/prisma/prisma.service.ts.</annotation>
+        <apps_api_src_prisma_prisma_service_ts_PrismaService_onModuleDestroy_METHOD TYPE="IS_METHOD_OF_CLASS" NAME="onModuleDestroy">
+          <keywords>prisma, method, Service</keywords>
+          <terms>onModuleDestroy</terms>
+          <annotation>onModuleDestroy method of class PrismaService.</annotation>
+        </apps_api_src_prisma_prisma_service_ts_PrismaService_onModuleDestroy_METHOD>
+      </apps_api_src_prisma_prisma_service_ts_PrismaService_CLASS>
+    </apps_api_src_prisma_prisma_service_ts>
+    <apps_api_src_users_users_module_ts TYPE="MODULE_MODULE" FILE="apps/api/src/users/users.module.ts">
+      <keywords>users, Module, CITYRNNG</keywords>
+      <terms>UsersModule</terms>
+      <annotation>Связывает провайдеры и экспортирует зависимости домена users.</annotation>
+      <apps_api_src_users_users_module_ts_UsersModule_CLASS TYPE="IS_CLASS_OF_MODULE" NAME="UsersModule">
+        <keywords>users, class, Module</keywords>
+        <terms></terms>
+        <annotation>Класс UsersModule реализует ответственность модуля apps/api/src/users/users.module.ts.</annotation>
+      </apps_api_src_users_users_module_ts_UsersModule_CLASS>
+    </apps_api_src_users_users_module_ts>
+    <apps_api_src_users_users_service_ts TYPE="SERVICE_MODULE" FILE="apps/api/src/users/users.service.ts">
+      <keywords>users, Service, CITYRNNG</keywords>
+      <terms>UsersService, defaultDisplayName, rolesOf, UserWithRelations</terms>
+      <annotation>Реализует бизнес-логику и координирует операции домена users.</annotation>
+      <apps_api_src_users_users_service_ts_UsersService_CLASS TYPE="IS_CLASS_OF_MODULE" NAME="UsersService">
+        <keywords>users, class, Service</keywords>
+        <terms>constructor, findByIdWithRelations, ensureFromVerifiedEmail</terms>
+        <annotation>Класс UsersService реализует ответственность модуля apps/api/src/users/users.service.ts.</annotation>
+        <apps_api_src_users_users_service_ts_UsersService_constructor_METHOD TYPE="IS_METHOD_OF_CLASS" NAME="constructor">
+          <keywords>users, method, Service</keywords>
+          <terms>constructor</terms>
+          <annotation>constructor method of class UsersService.</annotation>
+        </apps_api_src_users_users_service_ts_UsersService_constructor_METHOD>
+        <apps_api_src_users_users_service_ts_UsersService_findByIdWithRelations_METHOD TYPE="IS_METHOD_OF_CLASS" NAME="findByIdWithRelations">
+          <keywords>users, method, Service</keywords>
+          <terms>findByIdWithRelations</terms>
+          <annotation>findByIdWithRelations method of class UsersService.</annotation>
+        </apps_api_src_users_users_service_ts_UsersService_findByIdWithRelations_METHOD>
+        <apps_api_src_users_users_service_ts_UsersService_ensureFromVerifiedEmail_METHOD TYPE="IS_METHOD_OF_CLASS" NAME="ensureFromVerifiedEmail">
+          <keywords>users, method, Service</keywords>
+          <terms>ensureFromVerifiedEmail</terms>
+          <annotation>ensureFromVerifiedEmail method of class UsersService.</annotation>
+        </apps_api_src_users_users_service_ts_UsersService_ensureFromVerifiedEmail_METHOD>
+      </apps_api_src_users_users_service_ts_UsersService_CLASS>
+      <apps_api_src_users_users_service_ts_defaultDisplayName_FUNC TYPE="IS_FUNCTION_OF_MODULE" NAME="defaultDisplayName">
+        <keywords>users, function, Service</keywords>
+        <terms>defaultDisplayName</terms>
+        <annotation>Function defaultDisplayName of module apps/api/src/users/users.service.ts.</annotation>
+      </apps_api_src_users_users_service_ts_defaultDisplayName_FUNC>
+      <apps_api_src_users_users_service_ts_rolesOf_FUNC TYPE="IS_FUNCTION_OF_MODULE" NAME="rolesOf">
+        <keywords>users, function, Service</keywords>
+        <terms>rolesOf</terms>
+        <annotation>Function rolesOf of module apps/api/src/users/users.service.ts.</annotation>
+      </apps_api_src_users_users_service_ts_rolesOf_FUNC>
+      <CrossLinks>
+        <Link TARGET="apps_api_src_auth_types_ts" TYPE="USES_MODULE" />
+      </CrossLinks>
+    </apps_api_src_users_users_service_ts>
+    <apps_web_src_app_layout_tsx TYPE="UIROUTE_MODULE" FILE="apps/web/src/app/layout.tsx">
+      <keywords>web, UIRoute, CITYRNNG</keywords>
+      <terms>RootLayout, metadata</terms>
+      <annotation>Определяет UI-маршрут и его рендеринг для фронтенда.</annotation>
+      <apps_web_src_app_layout_tsx_RootLayout_FUNC TYPE="IS_FUNCTION_OF_MODULE" NAME="RootLayout">
+        <keywords>web, function, UIRoute</keywords>
+        <terms>RootLayout</terms>
+        <annotation>Function RootLayout of module apps/web/src/app/layout.tsx.</annotation>
+      </apps_web_src_app_layout_tsx_RootLayout_FUNC>
+    </apps_web_src_app_layout_tsx>
+    <apps_web_src_app_page_tsx TYPE="UIROUTE_MODULE" FILE="apps/web/src/app/page.tsx">
+      <keywords>web, UIRoute, CITYRNNG</keywords>
+      <terms>HomePage</terms>
+      <annotation>Определяет UI-маршрут и его рендеринг для фронтенда.</annotation>
+      <apps_web_src_app_page_tsx_HomePage_FUNC TYPE="IS_FUNCTION_OF_MODULE" NAME="HomePage">
+        <keywords>web, function, UIRoute</keywords>
+        <terms>HomePage</terms>
+        <annotation>Function HomePage of module apps/web/src/app/page.tsx.</annotation>
+      </apps_web_src_app_page_tsx_HomePage_FUNC>
+    </apps_web_src_app_page_tsx>
+    <apps_web_tailwind_config_ts TYPE="SUPPORT_MODULE" FILE="apps/web/tailwind.config.ts">
+      <keywords>project, Support, CITYRNNG</keywords>
+      <terms>config</terms>
+      <annotation>Содержит вспомогательный прикладной код домена project.</annotation>
+    </apps_web_tailwind_config_ts>
+    <ProjectCrossLinks TYPE="MODULE_INTERACTIONS_OVERVIEW">
+      <Link SOURCE="apps_api_src_attendances_admin_attendances_controller_ts" TARGET="apps_api_src_auth_types_ts" TYPE="MODULE_DEPENDENCY" />
+      <Link SOURCE="apps_api_src_auth_decorators_current_user_decorator_ts" TARGET="apps_api_src_auth_types_ts" TYPE="MODULE_DEPENDENCY" />
+      <Link SOURCE="apps_api_src_auth_guards_jwt_auth_guard_ts" TARGET="apps_api_src_auth_types_ts" TYPE="MODULE_DEPENDENCY" />
+      <Link SOURCE="apps_api_src_auth_guards_roles_guard_ts" TARGET="apps_api_src_auth_types_ts" TYPE="MODULE_DEPENDENCY" />
+      <Link SOURCE="apps_api_src_auth_tokens_service_ts" TARGET="apps_api_src_auth_types_ts" TYPE="MODULE_DEPENDENCY" />
+      <Link SOURCE="apps_api_src_events_admin_events_controller_ts" TARGET="apps_api_src_auth_types_ts" TYPE="MODULE_DEPENDENCY" />
+      <Link SOURCE="apps_api_src_integrations_strava_admin_strava_controller_ts" TARGET="apps_api_src_auth_types_ts" TYPE="MODULE_DEPENDENCY" />
+      <Link SOURCE="apps_api_src_integrations_strava_strava_accounts_service_ts" TARGET="apps_api_src_integrations_strava_types_ts" TYPE="MODULE_DEPENDENCY" />
+      <Link SOURCE="apps_api_src_integrations_strava_strava_activities_service_ts" TARGET="apps_api_src_integrations_strava_types_ts" TYPE="MODULE_DEPENDENCY" />
+      <Link SOURCE="apps_api_src_integrations_strava_strava_api_client_ts" TARGET="apps_api_src_integrations_strava_types_ts" TYPE="MODULE_DEPENDENCY" />
+      <Link SOURCE="apps_api_src_integrations_strava_strava_ingestion_service_ts" TARGET="apps_api_src_integrations_strava_types_ts" TYPE="MODULE_DEPENDENCY" />
+      <Link SOURCE="apps_api_src_integrations_strava_strava_oauth_service_ts" TARGET="apps_api_src_integrations_strava_types_ts" TYPE="MODULE_DEPENDENCY" />
+      <Link SOURCE="apps_api_src_integrations_strava_strava_controller_ts" TARGET="apps_api_src_auth_types_ts" TYPE="MODULE_DEPENDENCY" />
+      <Link SOURCE="apps_api_src_locations_admin_locations_controller_ts" TARGET="apps_api_src_auth_types_ts" TYPE="MODULE_DEPENDENCY" />
+      <Link SOURCE="apps_api_src_me_me_controller_ts" TARGET="apps_api_src_auth_types_ts" TYPE="MODULE_DEPENDENCY" />
+      <Link SOURCE="apps_api_src_points_admin_points_controller_ts" TARGET="apps_api_src_auth_types_ts" TYPE="MODULE_DEPENDENCY" />
+      <Link SOURCE="apps_api_src_points_points_controller_ts" TARGET="apps_api_src_auth_types_ts" TYPE="MODULE_DEPENDENCY" />
+      <Link SOURCE="apps_api_src_users_users_service_ts" TARGET="apps_api_src_auth_types_ts" TYPE="MODULE_DEPENDENCY" />
+    </ProjectCrossLinks>
+  </CITYRNNG_Legacy_Info>
+</KnowledgeGraph>

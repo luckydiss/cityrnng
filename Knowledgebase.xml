@@ -1,0 +1,32 @@
+<Knowledgebase SOURCE="LOCAL_REPOSITORY" STATUS="PARTIAL_MEMORY_BACKUP">
+  <Project NAME="CITYRNNG">
+    <Summary>Локальный knowledge snapshot проекта CITYRNNG, собранный из legacy-кода, структуры модулей и базовой документации.</Summary>
+    <Status>Прямой backup из memory MCP недоступен в текущем окружении, поэтому файл сформирован из локальных артефактов репозитория.</Status>
+    <Artifacts>
+      <Artifact TYPE="REFERENCE" PATH="docs/PRD.md" />
+      <Artifact TYPE="REFERENCE" PATH="docs/ARCHITECTURE.md" />
+      <Artifact TYPE="REFERENCE" PATH="docs/API-CONTRACTS.md" />
+      <Artifact TYPE="REFERENCE" PATH="AppGraph.xml" />
+    </Artifacts>
+    <Domains>
+      <Domain NAME="app.module" />
+      <Domain NAME="attendances" />
+      <Domain NAME="auth" />
+      <Domain NAME="config" />
+      <Domain NAME="crypto" />
+      <Domain NAME="database" />
+      <Domain NAME="events" />
+      <Domain NAME="health" />
+      <Domain NAME="locations" />
+      <Domain NAME="main" />
+      <Domain NAME="me" />
+      <Domain NAME="points" />
+      <Domain NAME="prisma" />
+      <Domain NAME="project" />
+      <Domain NAME="strava" />
+      <Domain NAME="users" />
+      <Domain NAME="web" />
+    </Domains>
+    <ModuleCount>69</ModuleCount>
+  </Project>
+</Knowledgebase>

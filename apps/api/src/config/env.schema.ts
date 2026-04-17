@@ -1,3 +1,24 @@
+/*
+# FILE: apps/api/src/config/env.schema.ts
+# VERSION: legacy-annotated-2
+# START_MODULE_CONTRACT:
+# PURPOSE: Определяет конфигурацию и валидацию окружения приложения.
+# SCOPE: Config layer for domain config inside CITYRNNG.
+# INPUT: Конфигурация окружения, DTO, доменные сущности и инфраструктурные зависимости по контексту файла.
+# OUTPUT: Публичные API модуля, доменные результаты или вспомогательные типы, доступные остальной системе.
+# KEYWORDS: [PROJECT(9): CITYRNNG; DOMAIN(8): config; LAYER(7): Config; TYPE(6): Module]
+# LINKS: [READS_SPEC(7): docs/PRD.md; READS_SPEC(7): docs/ARCHITECTURE.md; READS_SPEC(7): docs/API-CONTRACTS.md]
+# LINKS_TO_SPECIFICATION: [docs/PRD.md; docs/ARCHITECTURE.md; docs/API-CONTRACTS.md]
+# END_MODULE_CONTRACT
+# START_MODULE_MAP:
+# TYPE 5 [Тип или интерфейс прикладного контракта.] => Env
+# CONST 4 [Константа или конфигурационное значение модуля.] => envSchema
+# END_MODULE_MAP
+# START_USE_CASES:
+#- [env.schema]: Runtime Environment -> SupportRuntimeConfiguration -> ContextPrepared
+# END_USE_CASES
+*/
+
 import { z } from "zod";
 
 export const envSchema = z.object({
